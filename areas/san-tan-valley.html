@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Tan Valley Real Estate | Brian Butler - The Butler Realty</title>
+    <meta name="description" content="Your agent lives in San Tan Valley. Straight answers about San Tan Valley homes, communities, market data, and what it's actually like to live here.">
+    
+    <!-- Brand Colors -->
+    <style>
+        :root {
+            --primary: #1B4F72;
+            --accent: #2E86C1;
+            --accent-light: #5DADE2;
+            --light-bg: #EBF5FB;
+            --page-bg: #F8FBFD;
+            --white: #FFFFFF;
+            --body-text: #333333;
+            --secondary-text: #555555;
+            --green: #27AE60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--body-text);
+            background-color: var(--page-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(27, 79, 114, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            padding: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .hero-image {
+            margin-top: 3rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Main Content */
+        main {
+            padding: 80px 0;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .section-intro {
+            background-color: var(--light-bg);
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-intro h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-intro p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Market Snapshot */
+        .market-snapshot {
+            background-color: var(--white);
+            padding: 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+
+        .market-snapshot h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .data-source {
+            text-align: center;
+            color: var(--secondary-text);
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .market-stat {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-top: 0.5rem;
+        }
+
+        .trend-up {
+            color: var(--green);
+            font-size: 0.9rem;
+        }
+
+        .market-analysis {
+            background-color: var(--page-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .market-analysis h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .price-table th,
+        .price-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .price-table th {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Communities Section */
+        .communities {
+            background-color: var(--white);
+            padding: 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .communities h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .community {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .community:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .community h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .community-images {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .community-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .community-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 1rem;
+            background-color: var(--light-bg);
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            text-align: center;
+        }
+
+        /* Sections */
+        .content-section h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-section h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            margin: 1rem 0 2rem 2rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .builder-note {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        /* Fit Assessment */
+        .fit-assessment {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .fit-box {
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .right-fit {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-left: 5px solid var(--green);
+        }
+
+        .wrong-fit {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 5px solid #e74c3c;
+        }
+
+        .fit-box h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 80px 60px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .cta-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .cta-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .cta-box h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .contact-details a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .license {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .fit-assessment {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .market-snapshot,
+            .communities {
+                padding: 30px 20px;
+            }
+
+            .cta-section {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <img src="../butler-logo.jpg" alt="The Butler Realty" class="logo">
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../areas.html">Areas</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>San Tan Valley Real Estate</h1>
+            <p>Your agent lives here. Straight answers about San Tan Valley homes, communities, and what it's actually like to live in one of Arizona's fastest-growing areas.</p>
+            
+            <div class="hero-image">
+                <img src="stv-bella-vista-pool.webp" alt="Bella Vista Trails pool and amenity area, San Tan Valley">
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Intro Section -->
+            <section class="section-intro">
+                <p>San Tan Valley officially incorporated as a town in September 2025 — the largest municipal incorporation in Arizona history, with more than 123,000 residents — becoming Arizona's 92nd municipality and the largest in Pinal County. It continues to be one of the fastest-growing areas in the state. It's a mix of established communities and rapidly-expanding master-planned developments, with roughly one in five home sales currently going to new construction. I live here — in Johnson Ranch — and I work with buyers and sellers across the entire San Tan Valley market, from first-time buyers to luxury transactions.</p>
+            </section>
+
+            <!-- Market Snapshot -->
+            <section class="market-snapshot">
+                <h2>San Tan Valley Market Snapshot</h2>
+                <div class="data-source">Data: March 2026 • Source: ARMLS</div>
+                
+                <div class="market-grid">
+                    <div class="market-stat">
+                        <span class="stat-number">892</span>
+                        <div class="stat-label">New Listings</div>
+                        <div class="trend-up">↑ 28% vs. February</div>
+                    </div>
+                    <div class="market-stat">
+                        <span class="stat-number">1,655</span>
+                        <div class="stat-label">Active Listings</div>
+                        <div class="trend-up">↑ 5% vs. February</div>
+                    </div>
+                    <div class="market-stat">
+                        <span class="stat-number">743</span>
+                        <div class="stat-label">Under Contract</div>
+                        <div class="trend-up">↑ 22% vs. February</div>
+                    </div>
+                    <div class="market-stat">
+                        <span class="stat-number">539</span>
+                        <div class="stat-label">Sold Listings</div>
+                        <div class="trend-up">↑ 13% vs. February</div>
+                    </div>
+                    <div class="market-stat">
+                        <span class="stat-number">74</span>
+                        <div class="stat-label">Avg Days on Market</div>
+                        <div class="trend-up">↓ 10% vs. February</div>
+                    </div>
+                </div>
+
+                <div class="market-analysis">
+                    <h3>What the numbers are telling me</h3>
+                    <p>New listings and pending sales are both up sharply from February, which typically signals the start of the spring market. Homes are also selling faster — average days on market dropped from 82 to 74 in a single month. Inventory is healthy at 1,655 active listings, but the absorption rate is tightening in the mid-price tiers.</p>
+                </div>
+
+                <h3>By price range</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Price Range</th>
+                            <th>Months of Supply</th>
+                            <th>Sold-to-List %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$300K–$500K</td>
+                            <td>2.9</td>
+                            <td>98.7%</td>
+                        </tr>
+                        <tr>
+                            <td>$500K–$700K</td>
+                            <td>2.7</td>
+                            <td>99.0%</td>
+                        </tr>
+                        <tr>
+                            <td>$700K–$1M</td>
+                            <td>3.3</td>
+                            <td>97.9%</td>
+                        </tr>
+                        <tr>
+                            <td>$1M–$3M</td>
+                            <td>4.7</td>
+                            <td>97.4%</td>
+                        </tr>
+                        <tr>
+                            <td>$3M+</td>
+                            <td>7.0</td>
+                            <td>91.6%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="market-analysis">
+                    <h3>Translation</h3>
+                    <p>The $300K–$700K range is a tight seller's market — limited supply and homes selling for essentially full list price. The luxury tier ($1M+) has meaningfully more room for buyer negotiation, especially above $3M where inventory sits longer and sells at a larger discount to list.</p>
+                </div>
+            </section>
+
+            <!-- Communities Section -->
+            <section class="communities">
+                <h2>Communities I Know in San Tan Valley</h2>
+                <p style="text-align: center; margin-bottom: 3rem;">San Tan Valley is made up of dozens of communities and master-planned developments. These are the four I know best from living here and working deals.</p>
+
+                <div class="community">
+                    <h3>Johnson Ranch</h3>
+                    <p>I live in Johnson Ranch, so this is the community I know most intimately. It's one of the original master-planned communities in San Tan Valley, home to more than 20,000 residents across several square miles of Sonoran Desert landscape. Amenities for residents include three community pools, a one-acre catch-and-release fishing pond (restocked each spring), a nine-hole Pitch and Putt course, tennis and pickleball courts, a disc golf course, sand volleyball and basketball courts, and walking paths. An 18-hole public golf course — San Tan Highlands — also winds through the community, though it's operated independently of the HOA. Homes here trade hands regularly but don't sit long. Good fit for buyers who want established character and real amenities without sacrificing access to newer retail and dining going in nearby.</p>
+                </div>
+
+                <div class="community">
+                    <h3>Bella Vista Farms</h3>
+                    <p>Bella Vista Farms is a large master-planned community on the Florence-facing edge of San Tan Valley. Multiple national builders are active here, homes are only a few years old, and the community features pools, playgrounds, and parks that are very well maintained. It's still being built out, which means there are both resale opportunities and new-construction options depending on what you're looking for.</p>
+                    
+                    <div class="community-images">
+                        <div class="community-image">
+                            <img src="stv-bella-vista-clubhouse.webp" alt="Bella Vista Trails clubhouse">
+                            <div class="image-caption">Bella Vista Trails clubhouse, Bella Vista Farms — April 2026</div>
+                        </div>
+                        <div class="community-image">
+                            <img src="stv-bella-vista-outdoor-kitchen.webp" alt="Community outdoor kitchen amenity">
+                            <div class="image-caption">Community amenity, Bella Vista Farms</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="community">
+                    <h3>Skyline Ranch</h3>
+                    <p>Skyline Ranch is in the heart of San Tan Valley, right in the middle of where the growth is happening. If you want to be close to everything as San Tan Valley continues to expand — new retail, new restaurants, new amenities — Skyline Ranch puts you near the action. Home values have been strong here given the location.</p>
+                </div>
+
+                <div class="community">
+                    <h3>Copper Basin</h3>
+                    <p>Copper Basin sits a bit further out — more on the outskirts of San Tan Valley. Quieter, slightly less dense, a good match for buyers who want a little breathing room but still want the master-planned community experience.</p>
+                </div>
+            </section>
+
+            <!-- New Construction Section -->
+            <section class="content-section">
+                <h2>New Construction in San Tan Valley</h2>
+                <p>Roughly one in five home sales in San Tan Valley is new construction — a meaningfully higher share than most East Valley cities. If you're shopping San Tan Valley, new build versus resale is a real decision you'll have to make, not an afterthought.</p>
+
+                <h3>Builders currently active in San Tan Valley:</h3>
+                <p>Based on transactions and model visits I've worked through, the following builders are actively building in the San Tan Valley market:</p>
+
+                <ul>
+                    <li>D.R. Horton</li>
+                    <li>Lennar</li>
+                    <li>Mattamy Homes</li>
+                    <li>Meritage Homes</li>
+                    <li>Risewell Homes (the combined Landsea Homes / New Home Co. brand launched in December 2025)</li>
+                    <li>Toll Brothers</li>
+                </ul>
+
+                <div class="builder-note">
+                    This is not a comprehensive list of every builder in the market — these are the ones I've worked with directly. New builders enter the San Tan Valley market regularly as development continues.
+                </div>
+
+                <h3>What new construction offers right now:</h3>
+                <p>Several active builders are currently offering promotional financing incentives — rate buydowns and similar programs — to move inventory. These can translate into meaningful monthly payment savings, but the structure of each builder's incentive varies, and the fine print matters. New build pricing in San Tan Valley currently starts as low as the high $200s for entry-level product, making it one of the more accessible new-construction markets in the broader Phoenix metro area.</p>
+
+                <h3>New vs. resale — the honest tradeoffs:</h3>
+                <p>New builds come with warranty coverage, current-code efficiency, and fresh finishes — no previous owner's deferred maintenance to inherit. On the other hand: construction zones take years to finish, landscaping and shade trees take time to mature, community amenities are often "coming soon" for a while, and your neighbors are a lottery.</p>
+
+                <p>Resale homes in established San Tan Valley communities trade the "everything is brand new" feeling for mature neighborhoods, working landscaping, and communities with known personalities. They can also be priced more aggressively when a seller is motivated.</p>
+
+                <p>Either path can be the right one — the question is which tradeoffs you're willing to accept. That's the conversation I want to have with a buyer before they ever step into a model home or a resale tour.</p>
+            </section>
+
+            <!-- What STV Is Really Like -->
+            <section class="content-section">
+                <h2>What San Tan Valley Is Really Like</h2>
+                <p>Every real estate page talks about the upsides. Here's what you should actually know before you move here.</p>
+
+                <h3>The commute</h3>
+                <p>If you work in central Phoenix or Scottsdale, plan on 45-60 minutes each way during normal commute times. San Tan Valley is growing fast, but it's still genuinely on the outskirts of the metro area. Road infrastructure is expanding — new highways and arterial improvements are in progress — but today's reality is that most of the Valley feels an hour-plus away. Remote workers and people with flexible schedules do fine. Daily commuters to downtown Phoenix or central Scottsdale find it meaningful.</p>
+
+                <h3>Utilities and services</h3>
+                <p>San Tan Valley water service is primarily provided by EPCOR, whereas most East Valley cities operate municipal water systems. Rates and service structures vary significantly across the metro area, so it's worth comparing your specific situation rather than making blanket assumptions.</p>
+
+                <h3>Shopping and dining</h3>
+                <p>San Tan Valley has gotten meaningfully more convenient in the last couple of years. We've added Sprouts, Target, and Home Depot, plus a variety of fast food and chain restaurants. Walmart recently completed a full remodel. For bigger shopping trips — Costco, Queen Creek Marketplace — you're looking at 20-30 minutes depending on where in San Tan Valley you're starting from.</p>
+
+                <p>For dining beyond chains and fast-casual, or for entertainment like concerts and events, you're driving toward the inner East Valley or Phoenix. That's part of the tradeoff: quieter, more space, lower cost of entry — but less walkable urban convenience.</p>
+
+                <h3>The upside of being on the outskirts</h3>
+                <p>San Tan Valley is genuinely quieter than the inner East Valley. Less traffic noise, less density, more actual dark sky at night. Traffic can get congested during peak commute times, but outside those windows it moves freely — something you appreciate when you're just running errands or heading out for the evening. If you want space to breathe and you don't need to be in the middle of everything all the time, that's a legitimate lifestyle advantage, not a consolation prize.</p>
+            </section>
+
+            <!-- Fit Assessment -->
+            <section class="content-section">
+                <h2>Is San Tan Valley Right For You?</h2>
+                <p>San Tan Valley isn't for everyone, and that's actually a good thing. The people who move here and love it tend to share certain priorities and lifestyle preferences.</p>
+
+                <div class="fit-assessment">
+                    <div class="fit-box right-fit">
+                        <h3>San Tan Valley is the right fit if:</h3>
+                        <p>You want more house and land for your money than you can get in Gilbert, Chandler, or central Phoenix. You work remotely, have flexible schedules, or are willing to test-drive the commute to central Phoenix/Scottsdale to see if it works for your situation. You prefer quieter neighborhoods to urban density. You don't need walkable access to restaurants and entertainment — you're fine driving 20-30 minutes for bigger shopping trips and nights out. You're comfortable with a mix of established communities with mature landscaping and newer developments that are still building out.</p>
+                    </div>
+
+                    <div class="fit-box wrong-fit">
+                        <h3>San Tan Valley is the wrong fit if:</h3>
+                        <p>You've test-driven the commute to your workplace and determined it's a dealbreaker for your daily routine. You want to walk or bike to dinner and entertainment rather than drive. You need immediate access to urban amenities — diverse dining, cultural events, nightlife — without planning ahead. You strongly prefer either brand-new everything or completely established neighborhoods, rather than a community with both options available.</p>
+                    </div>
+                </div>
+
+                <div class="market-analysis">
+                    <h3>The honest bottom line:</h3>
+                    <p>San Tan Valley trades urban convenience for space, affordability, and a more residential pace of life. If that tradeoff sounds appealing, you should visit and actually drive the routes you'd be taking regularly. If it sounds limiting, you probably want to look elsewhere in the East Valley. Either answer is fine — it's better to know before you start house hunting than after you move in.</p>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2>Ready to Explore San Tan Valley?</h2>
+                <p>If you've read this far, San Tan Valley is probably worth a closer look. Here's how we can help you figure out if it's actually right for your situation.</p>
+
+                <div class="cta-content">
+                    <div class="cta-box">
+                        <h3>For buyers:</h3>
+                        <p>I live here, I know the market, and I've helped people make realistic decisions about whether San Tan Valley fits their lifestyle and commute tolerance. We can start with a conversation about what you're looking for and what tradeoffs you're willing to make — then look at specific homes and communities that match.</p>
+                    </div>
+
+                    <div class="cta-box">
+                        <h3>For sellers:</h3>
+                        <p>I work the San Tan Valley market regularly and know what buyers are actually looking for in each price tier. Whether you're moving up, moving out, or relocating within the East Valley, we can talk through pricing strategy and timeline that makes sense for your situation.</p>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Ready to have an honest conversation?</h3>
+                    <div class="contact-details">
+                        Call or text: <a href="tel:480-810-9255">(480) 810-9255</a><br>
+                        Email: <a href="mailto:brian@thebutlerrealty.com">brian@thebutlerrealty.com</a>
+                    </div>
+                    <div class="license">
+                        I'm Brian Butler with eXp Realty. Arizona License #SA701819000.
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "RealEstateAgent",
+        "name": "Brian Butler",
+        "description": "Licensed Arizona real estate agent specializing in San Tan Valley homes and communities. Licensed REALTOR® with eXp Realty.",
+        "image": "../butler-logo.jpg",
+        "telephone": "480-810-9255",
+        "email": "brian@thebutlerrealty.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "San Tan Valley",
+            "addressRegion": "AZ",
+            "addressCountry": "US"
+        },
+        "areaServed": "San Tan Valley, AZ",
+        "knowsAbout": ["San Tan Valley Real Estate", "Johnson Ranch", "Bella Vista Farms", "New Construction", "Resale Homes"],
+        "memberOf": {
+            "@type": "RealEstateAgency",
+            "name": "eXp Realty"
+        },
+        "license": "SA701819000"
+    }
+    </script>
+</body>
+</html>
