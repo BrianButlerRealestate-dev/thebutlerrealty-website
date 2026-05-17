@@ -1,0 +1,48 @@
+[build]
+  publish = "."
+
+# Pretty URL redirects
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/buyers"
+  to = "/buyers.html"
+  status = 200
+
+[[redirects]]
+  from = "/sellers"
+  to = "/sellers.html"
+  status = 200
+
+[[redirects]]
+  from = "/areas"
+  to = "/areas.html"
+  status = 200
+
+[[redirects]]
+  from = "/resources"
+  to = "/resources.html"
+  status = 200
+
+[[redirects]]
+  from = "/reviews"
+  to = "/reviews.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/home-value"
+  to = "/home-value.html"
+  status = 200
+
+[[redirects]]
+  from = "/search"
+  to = "/search.html"
+  status = 200
