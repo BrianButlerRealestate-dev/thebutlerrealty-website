@@ -46,3 +46,23 @@
   from = "/search"
   to = "/search.html"
   status = 200
+
+[[redirects]]
+  from = "/community-news"
+  to = "/community-news.html"
+  status = 200
+
+[[redirects]]
+  from = "/community-news/*"
+  to = "/community-news/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/market-updates"
+  to = "/market-updates.html"
+  status = 200
+
+[[redirects]]
+  from = "/market-updates/*"
+  to = "/market-updates/:splat.html"
+  status = 200
