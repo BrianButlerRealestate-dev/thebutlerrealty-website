@@ -1,0 +1,17 @@
+# Hand-off drafts, state, and logs for the automated website-publish watcher.
+# website-publisher only ever stages the specific files it creates/edits
+# (never `git add -A`), so this folder shouldn't leak into commits on its
+# own -- this entry is just a safety net against an accidental `git add -A`
+# down the line pulling raw drafts/logs into the public site's history.
+content-queue-articles/
+
+# Claude Code agent definitions and local dev-server launch config -- internal
+# to this working copy, not part of the deployed site. Safety net against an
+# accidental `git add -A` publishing them (Netlify's publish dir is repo root).
+# .claude/settings.local.json is already tracked separately and stays that way.
+.claude/agents/
+.claude/launch.json
+
+# Local automation scripts/watchers that publish content from this machine --
+# not part of the deployed site itself.
+automation/

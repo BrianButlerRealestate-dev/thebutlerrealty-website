@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '613631230446097');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Arizona Real Estate Resources | Buyer Guides & Market Reports | Brian Butler REALTOR®</title>
@@ -134,7 +151,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      <img src="images/butler-logo-white-v2.png" alt="The Butler Realty" style="height:44px;width:auto;">
+      <img src="images/butler-wordmark-white.png" alt="The Butler Realty" style="height:24px;width:auto;">
       <img src="images/exp-white-clean.png" alt="eXp Realty" style="height:28px;width:auto;opacity:0.9;">
     </a>
     <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
@@ -174,27 +191,27 @@
       <div class="download-card">
         <h3>📖 First-Time Buyer Guide</h3>
         <p>Step-by-step walkthrough from pre-approval to keys in hand. Down payment options, closing costs, Arizona assistance programs, and more.</p>
-        <a href="downloads/First_Time_Buyer_Guide.pdf" class="btn btn-accent" download>Download &rarr;</a>
+        <button type="button" class="btn btn-accent" onclick="openDownloadModal('First-Time Buyer Guide','downloads/First_Time_Buyer_Guide.pdf')">Download &rarr;</button>
       </div>
       <div class="download-card">
         <h3>📊 East Valley Market Report</h3>
         <p>City-by-city breakdown of median prices, days on market, inventory levels, and trends. Updated regularly with the latest MLS data.</p>
-        <a href="downloads/East_Valley_Market_Report.pdf" class="btn btn-accent" download>Download &rarr;</a>
+        <button type="button" class="btn btn-accent" onclick="openDownloadModal('East Valley Market Report','downloads/East_Valley_Market_Report.pdf')">Download &rarr;</button>
       </div>
       <div class="download-card">
         <h3>📋 Home Seller Checklist</h3>
         <p>Phase-by-phase guide to getting your home market-ready. Decluttering, repairs, staging, curb appeal &mdash; all tailored for Arizona.</p>
-        <a href="downloads/Home_Seller_Checklist.pdf" class="btn btn-accent" download>Download &rarr;</a>
+        <button type="button" class="btn btn-accent" onclick="openDownloadModal('Home Seller Checklist','downloads/Home_Seller_Checklist.pdf')">Download &rarr;</button>
       </div>
       <div class="download-card">
         <h3>🔧 Home Maintenance Calendar</h3>
         <p>Seasonal maintenance guide for Arizona homeowners. HVAC prep, monsoon protection, winter freeze prevention, and annual service recommendations.</p>
-        <a href="downloads/Home_Maintenance_Calendar.pdf" class="btn btn-accent" download>Download &rarr;</a>
+        <button type="button" class="btn btn-accent" onclick="openDownloadModal('Home Maintenance Calendar','downloads/Home_Maintenance_Calendar.pdf')">Download &rarr;</button>
       </div>
       <div class="download-card">
         <h3>🗺️ Neighborhood Spotlights</h3>
         <p>In-depth guide to 7 East Valley communities. Lifestyle, schools, commute, price ranges, and what makes each area unique.</p>
-        <a href="downloads/Neighborhood_Spotlights.pdf" class="btn btn-accent" download>Download &rarr;</a>
+        <button type="button" class="btn btn-accent" onclick="openDownloadModal('Neighborhood Spotlights','downloads/Neighborhood_Spotlights.pdf')">Download &rarr;</button>
       </div>
       <div class="download-card" style="background:var(--primary);border-color:var(--primary);">
         <h3 style="color:var(--white);">🏠 What's Your Home Worth?</h3>
@@ -211,13 +228,14 @@
     <a href="contact.html" class="btn">Let's Talk &rarr;</a>
   </div>
 </div>
+
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
     <div>
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-        <img src="images/butler-logo-white-v2.png" alt="The Butler Realty" style="height:50px;width:auto;opacity:0.9;">
+        <img src="images/butler-wordmark-white.png" alt="The Butler Realty" style="height:30px;width:auto;opacity:0.9;">
         <img src="images/exp-white-clean.png" alt="eXp Realty" style="height:26px;width:auto;opacity:0.8;">
       </div>
       <p>Brian Butler | REALTOR&reg; | eXp Realty<br>License # SA701819000<br>Arizona Department of Real Estate<br><br><em>"Not Just Your Agent, Your Advocate"</em></p>
@@ -254,5 +272,6 @@ window.addEventListener('scroll',()=>{document.getElementById('nav').classList.t
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===location.pathname.split('/').pop())a.classList.add('active');});
 </script>
 
+<script src="/js/site-enhancements.js" defer></script>
 </body>
 </html>

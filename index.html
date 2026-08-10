@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '613631230446097');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brian Butler REALTOR® | San Tan Valley & Florence AZ | eXp Realty</title>
@@ -178,7 +195,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      <img src="images/butler-logo-white-v2.png" alt="The Butler Realty" style="height:44px;width:auto;">
+      <img src="images/butler-wordmark-white.png" alt="The Butler Realty" style="height:24px;width:auto;">
       <img src="images/exp-white-clean.png" alt="eXp Realty" style="height:28px;width:auto;opacity:0.9;">
     </a>
     <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
@@ -203,6 +220,7 @@
 <main>
 
 <section class="hero">
+  <img src="images/butler-icon-watermark.png" alt="" aria-hidden="true" class="hero-mascot-watermark">
   <div class="hero-inner">
     <div class="hero-content">
       <h1>Not Just Your Agent,<br><em>Your Advocate</em></h1>
@@ -282,22 +300,45 @@
       <div class="section-label">Client Reviews</div>
       <h2 class="section-title">Don't Take My Word For It</h2>
     </div>
-    <div class="card-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"He is incredibly kind and patient with his clients. Always a quick phone call or text away to answer any questions at any time of the day. It is evident that he truly cares."</p>
-        <div class="review-author">&mdash; First-Time Buyer</div>
+    <div class="reviews-carousel" id="homeReviewsCarousel">
+      <div class="reviews-carousel-track">
+        <div class="reviews-carousel-slide active">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Brian was amazing to work with. He was understanding of the home dynamic we needed to fit our unique situation and allowed us to continue looking until we found the right home for us - Never rushing us to settle for less than what we needed!"</p>
+          <div class="review-author">&mdash; Casiel, Coolidge</div>
+        </div>
+        <div class="reviews-carousel-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Brian went above and beyond! He took the time to hear what I was needing and wanting from a home and community. He showed me the perfect new home and community that will make me feel safe and secure with my young son. EXCELLENT GUY AND REALTOR!"</p>
+          <div class="review-author">&mdash; First-Time Buyer, San Tan Valley</div>
+        </div>
+        <div class="reviews-carousel-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Brian was an outstanding person to work with. He is incredibly kind and patient with his clients. He listened to our wants and needs and was extremely knowledgeable about all things related to home buying. We cannot recommend him enough."</p>
+          <div class="review-author">&mdash; First-Time Buyer, Chandler</div>
+        </div>
+        <div class="reviews-carousel-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Brian was excellent on finding new homes for us. Really was open and available. He came with a lot of knowledge and recommended information for me and my wife for our first time buying a home."</p>
+          <div class="review-author">&mdash; Kody, Chandler</div>
+        </div>
+        <div class="reviews-carousel-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"You will be at good hands with Brian for your real estate needs. He is professional, extremely punctual, and methodical. He patiently listened to our needs and wants, walked us through the steps from making an offer to the closing."</p>
+          <div class="review-author">&mdash; Homebuyer, Gilbert</div>
+        </div>
+        <div class="reviews-carousel-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Brian did an amazing job in helping us purchase our condo. This was our first home purchase and his enthusiasm and helpfulness got us through the process with less stress than it could have been. Always very responsive."</p>
+          <div class="review-author">&mdash; Chrysta, Mesa</div>
+        </div>
+        <div class="reviews-carousel-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Brian helped me purchase a home. He was most helpful in all the closing aspects...Brian found a contractor for me to make the necessary adjustment to the house."</p>
+          <div class="review-author">&mdash; Marcia, Mesa</div>
+        </div>
       </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Brian went above and beyond! He took the time to hear what I was needing and wanting from a home and community. EXCELLENT GUY AND REALTOR!"</p>
-        <div class="review-author">&mdash; First-Time Buyer, San Tan Valley</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"His enthusiasm and helpfulness got us through the process with less stress than it could have been. Always very responsive and did a fantastic job in all negotiations."</p>
-        <div class="review-author">&mdash; Chrysta, Mesa</div>
-      </div>
+      <div class="reviews-carousel-dots" id="homeReviewsDots"></div>
     </div>
     <div class="text-center mt-4">
       <a href="reviews.html" class="btn btn-accent">Read All Reviews &rarr;</a>
@@ -346,13 +387,32 @@
     <a href="contact.html" class="btn">Let's Talk &rarr;</a>
   </div>
 </div>
+
+<!-- Hidden static copy so Netlify's build-time form scanner registers "lead-popup" —
+     the real popup is injected at runtime by js/site-enhancements.js and posts to this
+     same form name. Do not remove: without this, the JS-injected popup fails to submit. -->
+<form name="lead-popup" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden">
+  <input type="hidden" name="form-name" value="lead-popup">
+  <input name="bot-field">
+  <input type="text" name="name">
+  <input type="email" name="email">
+</form>
+<!-- Hidden static copy so Netlify registers "resource-download" — the real modal
+     (used by resources.html and buyers.html) is injected by js/site-enhancements.js. -->
+<form name="resource-download" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden">
+  <input type="hidden" name="form-name" value="resource-download">
+  <input type="hidden" name="resource" value="">
+  <input name="bot-field">
+  <input type="text" name="name">
+  <input type="email" name="email">
+</form>
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
     <div>
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-        <img src="images/butler-logo-white-v2.png" alt="The Butler Realty" style="height:50px;width:auto;opacity:0.9;">
+        <img src="images/butler-wordmark-white.png" alt="The Butler Realty" style="height:30px;width:auto;opacity:0.9;">
         <img src="images/exp-white-clean.png" alt="eXp Realty" style="height:26px;width:auto;opacity:0.8;">
       </div>
       <p>Brian Butler | REALTOR&reg; | eXp Realty<br>License # SA701819000<br>Arizona Department of Real Estate<br><br><em>"Not Just Your Agent, Your Advocate"</em></p>
@@ -388,6 +448,40 @@
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);});
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===location.pathname.split('/').pop())a.classList.add('active');});
 </script>
+
+<script>
+(function(){
+  var track = document.querySelector('#homeReviewsCarousel .reviews-carousel-track');
+  var dotsWrap = document.getElementById('homeReviewsDots');
+  if (!track || !dotsWrap) return;
+  var slides = track.querySelectorAll('.reviews-carousel-slide');
+  var current = 0;
+  var timer;
+
+  slides.forEach(function(_, i){
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', 'Show review ' + (i + 1));
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', function(){ goTo(i); resetTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = dotsWrap.querySelectorAll('button');
+
+  function goTo(i){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  function next(){ goTo((current + 1) % slides.length); }
+  function resetTimer(){ clearInterval(timer); timer = setInterval(next, 5500); }
+  resetTimer();
+})();
+</script>
+
+<script src="/js/site-enhancements.js" defer></script>
 
 </body>
 </html>

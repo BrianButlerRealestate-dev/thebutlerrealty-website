@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '613631230446097');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buying a Home in San Tan Valley & Florence AZ | First-Time Buyer Guide | Brian Butler REALTOR®</title>
@@ -190,7 +207,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      <img src="images/butler-logo-white-v2.png" alt="The Butler Realty" style="height:44px;width:auto;">
+      <img src="images/butler-wordmark-white.png" alt="The Butler Realty" style="height:24px;width:auto;">
       <img src="images/exp-white-clean.png" alt="eXp Realty" style="height:28px;width:auto;opacity:0.9;">
     </a>
     <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
@@ -253,13 +270,75 @@
       <div class="download-card">
         <h3>📖 Download the Free Guide</h3>
         <p>Step-by-step walkthrough of the entire home buying process, down payment options (including Arizona assistance programs), closing cost breakdown, San Tan Valley &amp; Florence market overview, and common mistakes to avoid.</p>
-        <a href="downloads/First_Time_Buyer_Guide.pdf" class="btn btn-primary" download>Download Free Guide &rarr;</a>
+        <button type="button" class="btn btn-primary" onclick="openDownloadModal('First-Time Buyer Guide','downloads/First_Time_Buyer_Guide.pdf')">Download Free Guide &rarr;</button>
       </div>
     </div>
   </div>
 </section>
 
 <section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Free Tool</div>
+      <h2 class="section-title">Mortgage &amp; Affordability Calculator</h2>
+      <p class="section-subtitle">Get a quick estimate of your monthly payment &mdash; adjust the numbers to see what fits your budget.</p>
+    </div>
+    <div class="calc-card">
+      <div class="calc-grid">
+        <div>
+          <div class="calc-slider-row">
+            <label>Home Price <span id="calcPriceLabel">$425,000</span></label>
+            <input type="range" id="calcPrice" min="150000" max="1000000" step="5000" value="425000">
+          </div>
+          <div class="calc-slider-row">
+            <label>Down Payment <span id="calcDownLabel">10% &middot; $42,500</span></label>
+            <input type="range" id="calcDown" min="0" max="50" step="1" value="10">
+          </div>
+          <div class="calc-slider-row">
+            <label>Interest Rate <span id="calcRateLabel">6.75%</span></label>
+            <input type="range" id="calcRate" min="3" max="9" step="0.125" value="6.75">
+          </div>
+          <div class="calc-slider-row">
+            <label>Loan Term</label>
+            <select id="calcTerm" style="width:100%;padding:10px 14px;border:1.5px solid var(--gray-300);border-radius:8px;font-family:var(--font-body);font-size:0.9rem;color:var(--gray-900);">
+              <option value="30">30-Year Fixed</option>
+              <option value="15">15-Year Fixed</option>
+            </select>
+          </div>
+          <div class="calc-slider-row">
+            <label>Property Tax (annual) <span id="calcTaxLabel">$2,550/yr</span></label>
+            <input type="range" id="calcTax" min="0" max="12000" step="50" value="2550">
+          </div>
+          <div class="calc-slider-row">
+            <label>Home Insurance (annual) <span id="calcInsLabel">$1,200/yr</span></label>
+            <input type="range" id="calcIns" min="0" max="5000" step="50" value="1200">
+          </div>
+          <div class="calc-slider-row">
+            <label>HOA (monthly) <span id="calcHoaLabel">$75/mo</span></label>
+            <input type="range" id="calcHoa" min="0" max="500" step="5" value="75">
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="calc-label">Estimated Monthly Payment</div>
+          <div class="calc-monthly" id="calcMonthlyTotal">$0</div>
+          <div class="calc-breakdown">
+            <div class="calc-breakdown-row"><span>Principal &amp; Interest</span><span id="calcPI">$0</span></div>
+            <div class="calc-breakdown-row"><span>Property Tax</span><span id="calcTaxOut">$0</span></div>
+            <div class="calc-breakdown-row"><span>Home Insurance</span><span id="calcInsOut">$0</span></div>
+            <div class="calc-breakdown-row"><span>HOA</span><span id="calcHoaOut">$0</span></div>
+            <div class="calc-breakdown-row" style="border-top:1px solid rgba(255,255,255,0.15);margin-top:8px;padding-top:10px;font-weight:700;"><span>Loan Amount</span><span id="calcLoanAmt">$0</span></div>
+          </div>
+          <div style="margin-top:22px;">
+            <a href="contact.html" class="btn" style="background:var(--white);color:var(--primary);font-weight:700;width:100%;justify-content:center;">Talk to Brian About Pre-Approval &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <p class="calc-disclaimer">Estimate only &mdash; actual payment depends on your lender, credit, loan program, and final terms. Not a quote or pre-approval. I can connect you with trusted local lenders for exact numbers.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">The Buying Process in 6 Steps</h2>
@@ -278,16 +357,21 @@
   <div class="container">
     <h2>Ready to Make Your Move?</h2>
     <p>Whether you're buying, selling, or just have questions &mdash; I'm here to help.</p>
-    <a href="contact.html" class="btn">Let's Talk &rarr;</a>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn">Let's Talk &rarr;</a>
+      <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/azbestrealtybrian/book-a-15-min-call-below'});return false;" class="btn" style="background:transparent;border:2px solid var(--white);color:var(--white);">Book a Free 15-Min Call &rarr;</a>
+    </div>
   </div>
 </div>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
     <div>
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-        <img src="images/butler-logo-white-v2.png" alt="The Butler Realty" style="height:50px;width:auto;opacity:0.9;">
+        <img src="images/butler-wordmark-white.png" alt="The Butler Realty" style="height:30px;width:auto;opacity:0.9;">
         <img src="images/exp-white-clean.png" alt="eXp Realty" style="height:26px;width:auto;opacity:0.8;">
       </div>
       <p>Brian Butler | REALTOR&reg; | eXp Realty<br>License # SA701819000<br>Arizona Department of Real Estate<br><br><em>"Not Just Your Agent, Your Advocate"</em></p>
@@ -324,5 +408,69 @@ window.addEventListener('scroll',()=>{document.getElementById('nav').classList.t
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===location.pathname.split('/').pop())a.classList.add('active');});
 </script>
 
+<script>
+(function(){
+  var price = document.getElementById('calcPrice');
+  var down = document.getElementById('calcDown');
+  var rate = document.getElementById('calcRate');
+  var term = document.getElementById('calcTerm');
+  var tax = document.getElementById('calcTax');
+  var ins = document.getElementById('calcIns');
+  var hoa = document.getElementById('calcHoa');
+  if (!price) return;
+
+  var priceLabel = document.getElementById('calcPriceLabel');
+  var downLabel = document.getElementById('calcDownLabel');
+  var rateLabel = document.getElementById('calcRateLabel');
+  var taxLabel = document.getElementById('calcTaxLabel');
+  var insLabel = document.getElementById('calcInsLabel');
+  var hoaLabel = document.getElementById('calcHoaLabel');
+
+  function fmt(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+
+  function recalc(){
+    var p = parseFloat(price.value);
+    var downPct = parseFloat(down.value);
+    var r = parseFloat(rate.value);
+    var years = parseFloat(term.value);
+    var t = parseFloat(tax.value);
+    var i = parseFloat(ins.value);
+    var h = parseFloat(hoa.value);
+
+    var downAmt = p * (downPct / 100);
+    var loanAmt = p - downAmt;
+    var monthlyRate = (r / 100) / 12;
+    var n = years * 12;
+    var pi = monthlyRate === 0
+      ? loanAmt / n
+      : loanAmt * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    var monthlyTax = t / 12;
+    var monthlyIns = i / 12;
+    var total = pi + monthlyTax + monthlyIns + h;
+
+    priceLabel.textContent = fmt(p);
+    downLabel.textContent = downPct + '% · ' + fmt(downAmt);
+    rateLabel.textContent = rate.value + '%';
+    taxLabel.textContent = fmt(t) + '/yr';
+    insLabel.textContent = fmt(i) + '/yr';
+    hoaLabel.textContent = fmt(h) + '/mo';
+
+    document.getElementById('calcMonthlyTotal').textContent = fmt(total);
+    document.getElementById('calcPI').textContent = fmt(pi);
+    document.getElementById('calcTaxOut').textContent = fmt(monthlyTax);
+    document.getElementById('calcInsOut').textContent = fmt(monthlyIns);
+    document.getElementById('calcHoaOut').textContent = fmt(h);
+    document.getElementById('calcLoanAmt').textContent = fmt(loanAmt);
+  }
+
+  [price, down, rate, term, tax, ins, hoa].forEach(function(el){
+    el.addEventListener('input', recalc);
+    el.addEventListener('change', recalc);
+  });
+  recalc();
+})();
+</script>
+
+<script src="/js/site-enhancements.js" defer></script>
 </body>
 </html>
