@@ -159,20 +159,20 @@
       if (!e.relatedTarget && e.clientY < 8) fireOnce('exit-intent')();
     });
 
-    // All devices: scroll depth past ~55%
+    // All devices: scroll depth past ~75%
     window.addEventListener(
       'scroll',
       function () {
         var docHeight = document.body.scrollHeight - window.innerHeight;
         if (docHeight <= 0) return;
         var pct = (window.scrollY / docHeight) * 100;
-        if (pct > 55) fireOnce('scroll-depth')();
+        if (pct > 75) fireOnce('scroll-depth')();
       },
       { passive: true }
     );
 
     // Fallback: time on page
-    setTimeout(fireOnce('time-on-page'), 45000);
+    setTimeout(fireOnce('time-on-page'), 90000);
   }
 
   /* ==================== GATED RESOURCE DOWNLOADS ====================
