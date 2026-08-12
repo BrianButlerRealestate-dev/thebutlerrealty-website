@@ -45,7 +45,7 @@ img{max-width:100%;height:auto;}
 }
 
 /* HERO */
-.hero{position:relative;min-height:85vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 40%,#0d2f45 100%);padding-top:64px;}
+.hero{position:relative;min-height:60vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 40%,#0d2f45 100%);padding-top:64px;}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(46,134,193,0.2) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(93,173,226,0.1) 0%,transparent 50%);}
 .hero-inner{position:relative;z-index:2;width:100%;max-width:1100px;margin:0 auto;padding:80px 28px 60px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:60px;align-items:center;}
 .hero-content h1{font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.4rem);font-weight:700;color:var(--white);line-height:1.15;margin-bottom:16px;}
@@ -151,7 +151,7 @@ img{max-width:100%;height:auto;}
 .page-hero p{position:relative;z-index:1;font-size:1.05rem;color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto;}
 
 /* MASCOT WATERMARK -- small, consistent, left-aligned on every hero/page-hero */
-.hero::after,.page-hero::after{content:'';position:absolute;left:-20px;top:50%;transform:translateY(-50%);width:170px;height:170px;background-image:url('/images/butler-icon-watermark.png');background-size:contain;background-repeat:no-repeat;background-position:left center;z-index:0;pointer-events:none;}
+.hero::after,.page-hero::after{content:'';position:absolute;left:28px;top:50%;transform:translateY(-50%);width:170px;height:170px;background-image:url('/images/butler-icon-watermark.png');background-size:contain;background-repeat:no-repeat;background-position:left center;z-index:0;pointer-events:none;}
 @media(max-width:640px){.hero::after,.page-hero::after{width:110px;height:110px;}}
 
 /* CHECKLIST */
