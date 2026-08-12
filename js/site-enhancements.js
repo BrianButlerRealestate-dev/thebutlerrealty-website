@@ -1,4 +1,4 @@
-/* The Butler Realty — site-wide enhancements
+/* Brian Butler — site-wide enhancements
    1. Scroll-reveal animations on cards/sections
    2. Exit-intent / scroll-depth lead popup (free market report)
    Loaded on every page via <script src="/js/site-enhancements.js" defer></script>

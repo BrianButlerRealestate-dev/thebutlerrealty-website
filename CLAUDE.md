@@ -1,4 +1,4 @@
-# The Butler Realty — thebutlerrealty.com
+# Brian Butler — thebutlerrealty.com
 
 Static HTML site (no build step) deployed on Netlify. Brian Butler is a real estate agent, not a developer — keep changes self-contained and don't introduce a build process.
 
