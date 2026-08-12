@@ -1,6 +1,7 @@
 /* Brian Butler — site-wide enhancements
    1. Scroll-reveal animations on cards/sections
    2. Exit-intent / scroll-depth lead popup (free market report)
+   3. Gated resource-download modal
    Loaded on every page via <script src="/js/site-enhancements.js" defer></script>
 */
 (function () {
@@ -34,16 +35,86 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  /* ==================== SHARED MODAL HELPERS ====================
+     Both the lead popup and the gated resource-download modal use this so
+     they can't stack on top of each other, background scroll locks while
+     either is open, and there's exactly one Netlify AJAX-submit flow to
+     maintain instead of two copies that can drift apart. */
+  var activeOverlay = null;
+
+  function openModal(overlay) {
+    if (activeOverlay && activeOverlay !== overlay) closeModal(activeOverlay);
+    activeOverlay = overlay;
+    document.body.classList.add('modal-open');
+    // Force a style flush before adding .active so the opacity/visibility
+    // transition actually plays (rAF alone can stall on a backgrounded tab).
+    overlay.getBoundingClientRect();
+    overlay.classList.add('active');
+  }
+
+  function closeModal(overlay) {
+    overlay.classList.remove('active');
+    if (activeOverlay === overlay) {
+      activeOverlay = null;
+      document.body.classList.remove('modal-open');
+    }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && activeOverlay) closeModal(activeOverlay);
+  });
+
+  // Wires an overlay's close button/click-outside-to-close, and its form's
+  // Netlify AJAX submit -> success/download/error flow.
+  function bindModalForm(opts) {
+    opts.closeBtn.addEventListener('click', function () { closeModal(opts.overlay); });
+    opts.overlay.addEventListener('click', function (e) {
+      if (e.target === opts.overlay) closeModal(opts.overlay);
+    });
+
+    opts.form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = opts.form.querySelector('.submit-btn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        var formData = new FormData(opts.form);
+        var response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+        if (response.ok) {
+          opts.formWrap.classList.add('hidden');
+          opts.success.classList.remove('hidden');
+          var a = document.createElement('a');
+          a.href = opts.getDownloadHref();
+          a.download = '';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        btn.textContent = opts.sendingLabel;
+        btn.disabled = false;
+      }
+    });
+  }
+
   /* ==================== EXIT-INTENT / SCROLL-DEPTH LEAD POPUP ==================== */
   var POPUP_SESSION_KEY = 'tbrLeadPopupShown';
-  // Don't interrupt people already mid-conversion or on utility pages
-  var SKIP_PATH_FRAGMENTS = ['contact', 'home-value', '404'];
 
   function shouldSkipPopup() {
+    // Utility pages: contact/home-value (already mid-conversion) and the 404
+    // error page. Netlify serves 404.html for any unmatched route WITHOUT
+    // rewriting location.pathname, so a pathname/substring check can never
+    // detect the error page — 404.html instead marks itself directly via a
+    // body attribute, which this checks instead of guessing from the URL.
+    if (document.body.getAttribute('data-page') === 'error') return true;
     var path = location.pathname.toLowerCase();
-    for (var i = 0; i < SKIP_PATH_FRAGMENTS.length; i++) {
-      if (path.indexOf(SKIP_PATH_FRAGMENTS[i]) !== -1) return true;
-    }
+    if (path.indexOf('contact') !== -1 || path.indexOf('home-value') !== -1) return true;
     try {
       return !!sessionStorage.getItem(POPUP_SESSION_KEY);
     } catch (e) {
@@ -75,7 +146,7 @@
     '      <div class="modal-icon">🎉</div>' +
     '      <h3>You\'re In!</h3>' +
     '      <p>Your download should start automatically. Questions in the meantime? <a href="/contact">Reach out anytime</a>.</p>' +
-    '      <a href="/downloads/East_Valley_Market_Report.pdf" id="leadPopupDownloadLink" class="btn btn-accent" target="_blank" rel="noopener">Download Now &rarr;</a>' +
+    '      <a href="/downloads/east_valley_market_report.pdf" id="leadPopupDownloadLink" class="btn btn-accent" target="_blank" rel="noopener">Download Now &rarr;</a>' +
     '    </div>' +
     '  </div>' +
     '</div>';
@@ -85,49 +156,16 @@
     var wrap = document.createElement('div');
     wrap.innerHTML = POPUP_HTML;
     document.body.appendChild(wrap.firstElementChild);
-    wireUpPopup();
-  }
 
-  function wireUpPopup() {
     var overlay = document.getElementById('leadPopupOverlay');
-    var closeBtn = document.getElementById('leadPopupClose');
-    var form = document.getElementById('leadPopupFormEl');
-    var formWrap = document.getElementById('leadPopupForm');
-    var success = document.getElementById('leadPopupSuccess');
-
-    function close() { overlay.classList.remove('active'); }
-    closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      var btn = form.querySelector('.submit-btn');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      try {
-        var formData = new FormData(form);
-        var response = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        });
-        if (response.ok) {
-          formWrap.classList.add('hidden');
-          success.classList.remove('hidden');
-          var a = document.createElement('a');
-          a.href = document.getElementById('leadPopupDownloadLink').href;
-          a.download = '';
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } else {
-          throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        btn.textContent = 'Send Me the Report →';
-        btn.disabled = false;
-      }
+    bindModalForm({
+      overlay: overlay,
+      closeBtn: document.getElementById('leadPopupClose'),
+      form: document.getElementById('leadPopupFormEl'),
+      formWrap: document.getElementById('leadPopupForm'),
+      success: document.getElementById('leadPopupSuccess'),
+      sendingLabel: 'Send Me the Report →',
+      getDownloadHref: function () { return document.getElementById('leadPopupDownloadLink').href; }
     });
   }
 
@@ -136,43 +174,44 @@
     markPopupShown();
     injectPopup();
     var overlay = document.getElementById('leadPopupOverlay');
-    if (!overlay) return;
-    // Force a style flush before adding .active so the opacity/visibility
-    // transition actually plays (rAF alone can stall on a backgrounded tab).
-    overlay.getBoundingClientRect();
-    overlay.classList.add('active');
+    if (overlay) openModal(overlay);
   }
 
   function initPopup() {
     if (shouldSkipPopup()) return;
     var fired = false;
-    function fireOnce(trigger) {
-      return function () {
-        if (fired) return;
-        fired = true;
-        showPopup();
-      };
+    function fireOnce() {
+      if (fired) return;
+      fired = true;
+      showPopup();
     }
 
     // Desktop: exit intent (mouse leaves toward the browser chrome)
     document.addEventListener('mouseout', function (e) {
-      if (!e.relatedTarget && e.clientY < 8) fireOnce('exit-intent')();
+      if (!e.relatedTarget && e.clientY < 8) fireOnce();
     });
 
-    // All devices: scroll depth past ~75%
+    // All devices: scroll depth past ~75%, rAF-gated so the layout read in
+    // here runs at most once per frame instead of on every raw scroll tick.
+    var scrollTicking = false;
     window.addEventListener(
       'scroll',
       function () {
-        var docHeight = document.body.scrollHeight - window.innerHeight;
-        if (docHeight <= 0) return;
-        var pct = (window.scrollY / docHeight) * 100;
-        if (pct > 75) fireOnce('scroll-depth')();
+        if (scrollTicking || fired) return;
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+          scrollTicking = false;
+          var docHeight = document.body.scrollHeight - window.innerHeight;
+          if (docHeight <= 0) return;
+          var pct = (window.scrollY / docHeight) * 100;
+          if (pct > 75) fireOnce();
+        });
       },
       { passive: true }
     );
 
     // Fallback: time on page
-    setTimeout(fireOnce('time-on-page'), 90000);
+    setTimeout(fireOnce, 90000);
   }
 
   /* ==================== GATED RESOURCE DOWNLOADS ====================
@@ -233,42 +272,17 @@
       var btn = form.querySelector('.submit-btn');
       btn.textContent = 'Send Me the Guide →';
       btn.disabled = false;
-      overlay.classList.add('active');
+      openModal(overlay);
     };
 
-    function close() { overlay.classList.remove('active'); }
-    document.getElementById('resourceModalClose').addEventListener('click', close);
-    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      var btn = form.querySelector('.submit-btn');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      try {
-        var formData = new FormData(form);
-        var response = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        });
-        if (response.ok) {
-          formWrap.classList.add('hidden');
-          success.classList.remove('hidden');
-          var a = document.createElement('a');
-          a.href = pendingPath;
-          a.download = '';
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } else {
-          throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        btn.textContent = 'Send Me the Guide →';
-        btn.disabled = false;
-      }
+    bindModalForm({
+      overlay: overlay,
+      closeBtn: document.getElementById('resourceModalClose'),
+      form: form,
+      formWrap: formWrap,
+      success: success,
+      sendingLabel: 'Send Me the Guide →',
+      getDownloadHref: function () { return pendingPath; }
     });
   }
 
