@@ -130,7 +130,7 @@ img{max-width:100%;height:auto;}
 .cta-banner .btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.2);}
 
 /* FOOTER */
-.footer{background:var(--primary-dark);padding:48px 0 32px;color:rgba(255,255,255,0.6);}
+.footer{position:relative;z-index:2;background:var(--primary-dark);padding:48px 0 32px;color:rgba(255,255,255,0.6);}
 .footer-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;}
 .footer h3{font-family:var(--font-display);color:var(--white);font-size:1rem;margin-bottom:14px;}
 .footer p,.footer a{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;}
@@ -147,9 +147,20 @@ img{max-width:100%;height:auto;}
 .page-hero::after{content:'';position:absolute;left:28px;top:50%;transform:translateY(-50%);width:170px;height:170px;background-image:url('/images/butler-icon-watermark.png');background-size:contain;background-repeat:no-repeat;background-position:left center;z-index:0;pointer-events:none;}
 @media(max-width:640px){.page-hero::after{width:110px;height:110px;}}
 
-/* MASCOT WATERMARK -- large, centered, behind the homepage hero's centered copy */
-.hero::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:560px;height:560px;background-image:url('/images/butler-icon-watermark.png');background-size:contain;background-repeat:no-repeat;background-position:center;z-index:0;pointer-events:none;}
-@media(max-width:768px){.hero::after{width:320px;height:320px;}}
+/* MASCOT WATERMARK -- homepage only: fixed in place at viewport-center as you
+   scroll, crossfading between a white and a navy version depending on
+   whether a dark or light section currently sits behind it (see the
+   scroll-driven toggle in index.html's inline script). Sits above section
+   backgrounds but below actual content -- see main/.footer z-index below. */
+.floating-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:560px;height:560px;pointer-events:none;z-index:1;}
+.floating-watermark .fw-layer{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0;transition:opacity .6s ease;}
+.floating-watermark .fw-layer.active{opacity:1;}
+.floating-watermark .fw-dark{background-image:url('/images/butler-icon-white.png');}
+.floating-watermark .fw-dark.active{opacity:0.10;}
+.floating-watermark .fw-light{background-image:url('/images/butler-icon-navy.png');}
+.floating-watermark .fw-light.active{opacity:0.06;}
+@media(max-width:768px){.floating-watermark{width:320px;height:320px;}}
+main{position:relative;z-index:2;}
 
 /* CHECKLIST */
 .check-list{list-style:none;}
