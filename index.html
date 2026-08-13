@@ -25,7 +25,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202608131400">
+<link rel="stylesheet" href="styles.css?v=202608131530">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2FZ7XDDN5"></script>
@@ -228,9 +228,6 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
         <a href="buyers.html" class="btn btn-primary">I Want to Buy &rarr;</a>
         <a href="sellers.html" class="btn btn-outline">I Want to Sell &rarr;</a>
       </div>
-    </div>
-    <div class="hero-photo">
-      <img src="images/brian-butler.jpg" alt="Brian Butler REALTOR - Arizona Real Estate Agent">
     </div>
   </div>
   <button type="button" class="scroll-cue" id="scrollCue" aria-label="Scroll down">
@@ -542,21 +539,6 @@ document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')=
     });
   }
 
-  /* ---- Hero photo mouse-tilt (skip on touch devices) ---- */
-  var hero = document.querySelector('.hero');
-  var heroPhoto = document.querySelector('.hero-photo img');
-  if (hero && heroPhoto && !window.matchMedia('(pointer: coarse)').matches) {
-    hero.addEventListener('mousemove', function(e){
-      var rect = hero.getBoundingClientRect();
-      var x = (e.clientX - rect.left) / rect.width - 0.5;
-      var y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroPhoto.style.transform = 'perspective(600px) rotateY(' + (x * 8).toFixed(2) + 'deg) rotateX(' + (-y * 8).toFixed(2) + 'deg)';
-    });
-    hero.addEventListener('mouseleave', function(){
-      heroPhoto.style.transform = 'perspective(600px) rotateY(0deg) rotateX(0deg)';
-    });
-  }
-
   /* ---- Animated stat counters (run once, when scrolled into view) ---- */
   var statEls = document.querySelectorAll('.stat-number');
   if (statEls.length && 'IntersectionObserver' in window) {
@@ -591,7 +573,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')=
 })();
 </script>
 
-<script src="/js/site-enhancements.js?v=202608131400" defer></script>
+<script src="/js/site-enhancements.js?v=202608131530" defer></script>
 
 </body>
 </html>

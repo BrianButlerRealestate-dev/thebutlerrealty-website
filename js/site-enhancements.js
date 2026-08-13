@@ -186,9 +186,16 @@
       showPopup();
     }
 
-    // Desktop: exit intent (mouse leaves toward the browser chrome)
+    // Desktop: exit intent (mouse leaves toward the browser chrome). Not
+    // armed until someone's actually been on the page a bit -- otherwise a
+    // visitor whose cursor is still resting near the address bar right after
+    // the page loads (e.g. they just typed the URL and hit enter) trips this
+    // instantly, which reads as the popup firing "immediately" even though
+    // nothing about their behavior actually signaled they were leaving.
+    var exitIntentArmed = false;
+    setTimeout(function () { exitIntentArmed = true; }, 20000);
     document.addEventListener('mouseout', function (e) {
-      if (!e.relatedTarget && e.clientY < 8) fireOnce();
+      if (exitIntentArmed && !e.relatedTarget && e.clientY < 8) fireOnce();
     });
 
     // All devices: scroll depth past ~75%, rAF-gated so the layout read in
@@ -211,7 +218,7 @@
     );
 
     // Fallback: time on page
-    setTimeout(fireOnce, 90000);
+    setTimeout(fireOnce, 120000);
   }
 
   /* ==================== GATED RESOURCE DOWNLOADS ====================
