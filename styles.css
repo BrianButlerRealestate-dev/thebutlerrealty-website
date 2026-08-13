@@ -156,7 +156,7 @@ img{max-width:100%;height:auto;}
    bio section, the navy footer) fully hides it, and it only shows through in
    sections with no background of their own. Kept legible at low opacity with
    pointer-events:none so it never blocks text or clicks. */
-.floating-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:560px;height:560px;pointer-events:none;z-index:500;}
+.floating-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:1120px;height:1120px;pointer-events:none;z-index:500;}
 .floating-watermark .fw-layer{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0;transition:opacity .6s ease;}
 .floating-watermark .fw-layer.active{opacity:1;}
 .floating-watermark .fw-dark{background-image:url('/images/butler-icon-white.png');}
