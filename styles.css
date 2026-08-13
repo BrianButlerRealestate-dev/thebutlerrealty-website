@@ -143,19 +143,17 @@ img{max-width:100%;height:auto;}
 .page-hero h1{position:relative;z-index:1;font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--white);margin-bottom:10px;}
 .page-hero p{position:relative;z-index:1;font-size:1.05rem;color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto;}
 
-/* MASCOT WATERMARK -- small, consistent, left-aligned on every inner-page hero */
-.page-hero::after{content:'';position:absolute;left:28px;top:50%;transform:translateY(-50%);width:170px;height:170px;background-image:url('/images/butler-icon-watermark.png');background-size:contain;background-repeat:no-repeat;background-position:left center;z-index:0;pointer-events:none;}
-@media(max-width:640px){.page-hero::after{width:110px;height:110px;}}
-
-/* MASCOT WATERMARK -- homepage only: fixed in place at viewport-center as you
+/* MASCOT WATERMARK -- site-wide: fixed in place at viewport-center as you
    scroll, crossfading between a white and a navy version depending on
-   whether a dark or light section currently sits behind it (see the
-   scroll-driven toggle in index.html's inline script). Sits above every
-   section's own background (z-index above normal page content) -- otherwise
-   any section with an opaque background of its own (the navy hero, the white
-   bio section, the navy footer) fully hides it, and it only shows through in
-   sections with no background of their own. Kept legible at low opacity with
-   pointer-events:none so it never blocks text or clicks. */
+   whether a dark or light section currently sits behind it (see
+   initFloatingWatermark() in js/site-enhancements.js -- the markup, a static
+   #floatingWatermark block, sits right after <body> on every page). Sits
+   above every section's own background (z-index above normal page content)
+   -- otherwise any section with an opaque background of its own (a navy
+   hero, a white content section, the navy footer) fully hides it, and it
+   only shows through in sections with no background of their own. Kept
+   legible at low opacity with pointer-events:none so it never blocks text or
+   clicks. Replaces the old small left-aligned .page-hero watermark. */
 .floating-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:1120px;height:1120px;pointer-events:none;z-index:500;}
 .floating-watermark .fw-layer{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0;transition:opacity .6s ease;}
 .floating-watermark .fw-layer.active{opacity:1;}
@@ -171,6 +169,13 @@ img{max-width:100%;height:auto;}
 .check-list li::before{content:'\2705';position:absolute;left:0;top:8px;}
 
 /* UTILS */
+/* HOMEPAGE: IDX QUICK-SEARCH WIDGET -- the embedded exprealty "wide.php"
+   widget reflows to a tall stacked layout on narrow screens; 300px (fine on
+   desktop, where it fits one/two rows) was cropping almost the whole thing
+   off on mobile, reading as a blank box. */
+.idx-widget-frame{height:300px;}
+@media(max-width:600px){.idx-widget-frame{height:640px;}}
+
 .text-center{text-align:center;}
 .mt-2{margin-top:16px;}
 .mt-4{margin-top:32px;}

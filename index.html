@@ -25,7 +25,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202608131745">
+<link rel="stylesheet" href="styles.css?v=202608131830">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2FZ7XDDN5"></script>
@@ -279,7 +279,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
       <h2 class="section-title">Find Your Next Home</h2>
     </div>
     <div style="max-width:960px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-      <iframe style="width:100%; height:300px; border:none;" src="https://brianbutler.exprealty.com/wide.php" allowtransparency="true" frameBorder="0"></iframe>
+      <iframe class="idx-widget-frame" style="width:100%; border:none;" src="https://brianbutler.exprealty.com/wide.php" allowtransparency="true" frameBorder="0"></iframe>
     </div>
     <div class="text-center mt-2">
       <a href="search.html" style="font-size:0.9rem;color:var(--accent);font-weight:500;">Advanced Search &rarr;</a>
@@ -577,38 +577,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')=
 })();
 </script>
 
-<script>
-(function(){
-  /* ---- Floating watermark: crossfades white/navy depending on whether a
-     dark or light section currently sits behind the fixed, viewport-centered
-     mark as the page scrolls. ---- */
-  var wrap = document.getElementById('floatingWatermark');
-  if (!wrap) return;
-  var darkLayer = wrap.querySelector('.fw-dark');
-  var lightLayer = wrap.querySelector('.fw-light');
-  var darkSections = document.querySelectorAll('.hero, .stats-bar, .section-dark, .cta-banner, .footer');
-  if (!darkSections.length) return;
-
-  var ticking = false;
-  function update(){
-    ticking = false;
-    var centerY = window.innerHeight / 2;
-    var onDark = false;
-    for (var i = 0; i < darkSections.length; i++) {
-      var r = darkSections[i].getBoundingClientRect();
-      if (r.top <= centerY && r.bottom >= centerY) { onDark = true; break; }
-    }
-    darkLayer.classList.toggle('active', onDark);
-    lightLayer.classList.toggle('active', !onDark);
-  }
-  window.addEventListener('scroll', function(){
-    if (!ticking) { ticking = true; requestAnimationFrame(update); }
-  }, { passive: true });
-  update();
-})();
-</script>
-
-<script src="/js/site-enhancements.js?v=202608131745" defer></script>
+<script src="/js/site-enhancements.js?v=202608131830" defer></script>
 
 </body>
 </html>

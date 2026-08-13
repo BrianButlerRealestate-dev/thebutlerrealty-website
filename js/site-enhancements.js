@@ -2,6 +2,7 @@
    1. Scroll-reveal animations on cards/sections
    2. Exit-intent / scroll-depth lead popup (free market report)
    3. Gated resource-download modal
+   4. Floating watermark (crossfades white/navy depending on section)
    Loaded on every page via <script src="/js/site-enhancements.js" defer></script>
 */
 (function () {
@@ -33,6 +34,42 @@
     );
 
     els.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ==================== FLOATING WATERMARK ====================
+     Fixed at viewport-center as the page scrolls; crossfades between a white
+     layer (active whenever a dark section -- hero, page-hero, stats bar,
+     dark CTA, footer -- currently spans the vertical center of the screen)
+     and a navy layer (active otherwise). Site-wide; the markup
+     (#floatingWatermark) is a static block right after <body> on every page. */
+  function initFloatingWatermark() {
+    var wrap = document.getElementById('floatingWatermark');
+    if (!wrap) return;
+    var darkLayer = wrap.querySelector('.fw-dark');
+    var lightLayer = wrap.querySelector('.fw-light');
+    var darkSections = document.querySelectorAll('.hero, .page-hero, .stats-bar, .section-dark, .cta-banner, .footer');
+    if (!darkSections.length) return;
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var centerY = window.innerHeight / 2;
+      var onDark = false;
+      for (var i = 0; i < darkSections.length; i++) {
+        var r = darkSections[i].getBoundingClientRect();
+        if (r.top <= centerY && r.bottom >= centerY) { onDark = true; break; }
+      }
+      darkLayer.classList.toggle('active', onDark);
+      lightLayer.classList.toggle('active', !onDark);
+    }
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      },
+      { passive: true }
+    );
+    update();
   }
 
   /* ==================== SHARED MODAL HELPERS ====================
@@ -297,5 +334,6 @@
     initReveal();
     initPopup();
     initDownloadModal();
+    initFloatingWatermark();
   });
 })();
