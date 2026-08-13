@@ -25,7 +25,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202608131830">
+<link rel="stylesheet" href="styles.css?v=202608131900">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2FZ7XDDN5"></script>
@@ -279,7 +279,17 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
       <h2 class="section-title">Find Your Next Home</h2>
     </div>
     <div style="max-width:960px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-      <iframe class="idx-widget-frame" style="width:100%; border:none;" src="https://brianbutler.exprealty.com/wide.php" allowtransparency="true" frameBorder="0"></iframe>
+      <iframe class="idx-widget-frame" id="homeIdxFrame" style="width:100%; border:none;" allowtransparency="true" frameBorder="0"></iframe>
+      <script>
+        // wide.php is a fixed-width desktop widget that doesn't reflow for
+        // mobile (confirmed blank on narrow screens no matter the iframe
+        // height); embed.php is the same widget variant already proven to
+        // work at every size on search.html, so mobile gets that instead.
+        // Set entirely via JS (no static src) so only one variant ever loads.
+        document.getElementById('homeIdxFrame').src = window.matchMedia('(max-width:600px)').matches
+          ? 'https://brianbutler.exprealty.com/embed.php'
+          : 'https://brianbutler.exprealty.com/wide.php';
+      </script>
     </div>
     <div class="text-center mt-2">
       <a href="search.html" style="font-size:0.9rem;color:var(--accent);font-weight:500;">Advanced Search &rarr;</a>
@@ -577,7 +587,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')=
 })();
 </script>
 
-<script src="/js/site-enhancements.js?v=202608131830" defer></script>
+<script src="/js/site-enhancements.js?v=202608131900" defer></script>
 
 </body>
 </html>

@@ -169,12 +169,13 @@ img{max-width:100%;height:auto;}
 .check-list li::before{content:'\2705';position:absolute;left:0;top:8px;}
 
 /* UTILS */
-/* HOMEPAGE: IDX QUICK-SEARCH WIDGET -- the embedded exprealty "wide.php"
-   widget reflows to a tall stacked layout on narrow screens; 300px (fine on
-   desktop, where it fits one/two rows) was cropping almost the whole thing
-   off on mobile, reading as a blank box. */
+/* HOMEPAGE: IDX QUICK-SEARCH WIDGET -- wide.php (desktop) doesn't render at
+   all on narrow screens (fixed-width widget, not a reflow issue -- see the
+   src-swap script next to the iframe), so mobile loads embed.php instead,
+   the same variant already working at every size on search.html; matches
+   its proven 680px height there. */
 .idx-widget-frame{height:300px;}
-@media(max-width:600px){.idx-widget-frame{height:640px;}}
+@media(max-width:600px){.idx-widget-frame{height:680px;}}
 
 .text-center{text-align:center;}
 .mt-2{margin-top:16px;}
