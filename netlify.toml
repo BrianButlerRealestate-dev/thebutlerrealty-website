@@ -28,6 +28,11 @@
   status = 200
 
 [[redirects]]
+  from = "/mortgage-rates"
+  to = "/mortgage-rates.html"
+  status = 200
+
+[[redirects]]
   from = "/reviews"
   to = "/reviews.html"
   status = 200
