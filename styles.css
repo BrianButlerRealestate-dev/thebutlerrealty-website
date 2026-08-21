@@ -84,7 +84,7 @@ img{max-width:100%;height:auto;}
 /* REVIEWS */
 .review-card{background:var(--white);border-radius:14px;padding:28px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid var(--gray-100);}
 .review-stars{color:#F4D03F;font-size:1.1rem;margin-bottom:12px;}
-.review-text{font-family:var(--font-display);font-style:italic;font-size:0.95rem;color:var(--gray-900);line-height:1.6;margin-bottom:14px;}
+.review-text{font-family:var(--font-display);font-style:italic;font-size:0.95rem;color:var(--gray-900);line-height:1.6;margin:0 0 14px 0;}
 .review-author{font-size:0.85rem;font-weight:600;color:var(--accent);}
 
 /* ABOUT */
