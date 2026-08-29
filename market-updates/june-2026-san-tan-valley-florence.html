@@ -216,6 +216,9 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
       <h2 style="font-size:1.75rem;line-height:1.3;margin-bottom:8px;color:var(--primary);">332 Sold, Supply Eases to 3.43 Months as Demand Softens in the $250K&ndash;$500K Band</h2>
       <p style="color:var(--gray-500);font-size:0.875rem;margin-bottom:32px;">Data period: June 2026 &bull; Compared to: May 2026 &bull; Source: ARMLS</p>
 
+      <!-- Headline stat-tiles + paired-bar chart (filled by ../js/charts.js from the table below) -->
+      <div class="market-viz" data-market-viz></div>
+
       <!-- Stats table -->
       <table class="market-table">
         <thead>
@@ -336,5 +339,6 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);});
 </script>
 <script src="/js/site-enhancements.js?v=202608131900" defer></script>
+<script src="../js/charts.js?v=202608131900" defer></script>
 </body>
 </html>
