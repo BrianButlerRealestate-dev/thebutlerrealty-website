@@ -9,3 +9,7 @@
 /home-value /home-value.html 200
 
 /search    /search.html    200
+/community-news /community-news.html 200
+/community-news/* /community-news/:splat.html 200
+/market-updates /market-updates.html 200
+/market-updates/* /market-updates/:splat.html 200
