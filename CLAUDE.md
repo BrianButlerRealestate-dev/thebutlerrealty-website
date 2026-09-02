@@ -2,6 +2,24 @@
 
 Static HTML site (no build step) deployed on Netlify. Brian Butler is a real estate agent, not a developer — keep changes self-contained and don't introduce a build process.
 
+## Brand name (compliance — do not regress)
+
+Per a compliance call (2026-08-12), **"The Butler Realty" is retired as standalone
+wording** — brokerage identity is **eXp Realty**, and the personal brand is
+**"Brian Butler"**. The domain `thebutlerrealty.com`, Brian's email, and the
+butler-with-house icon mark are all still fine. The site was swept clean of the
+old wordmark; don't reintroduce "The Butler Realty" as visible text, in a logo,
+in `<title>`/meta, or in JSON-LD `name` fields. Agent identity that must appear
+on real estate content: `Brian Butler | eXp Realty | License SA701819000`.
+Never add "Each office is independently owned and operated" — that's franchise
+language and eXp is a single national brokerage.
+
+## Deploy branch
+
+Netlify builds from **`main`**. A local `master` branch can sit stale without
+meaning anything is undeployed — check the live URL, or push explicitly
+(`git push origin master:main` / `git push origin <local-branch>:main`).
+
 ## Adding any new page (market update, community news post, area page, listing page, etc.)
 
 Every time a new page is added to the site, do these in the same change — don't leave them for later:

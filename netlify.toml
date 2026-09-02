@@ -23,6 +23,11 @@
   status = 200
 
 [[redirects]]
+  from = "/areas/*"
+  to = "/areas/:splat.html"
+  status = 200
+
+[[redirects]]
   from = "/resources"
   to = "/resources.html"
   status = 200
