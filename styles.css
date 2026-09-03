@@ -31,6 +31,19 @@
   --radius-surface: 16px;
   --shadow-card: 0 2px 8px rgba(0,0,0,0.06);
   --shadow-raised: 0 8px 30px rgba(0,0,0,0.1);
+  /* Local Events monthly-calendar variant — sunset palette (see .le-* rules) */
+  --le-sky-top: #E8743B;
+  --le-sky-mid: #B0466A;
+  --le-dusk: #3A2A52;
+  --le-night: #0D1A2B;
+  --le-amber: #F2B45E;
+  --le-amber-soft: #F6D9A8;
+  --le-cream: #FDF3E7;
+  --le-wash: #F7EDDE;
+  --le-plum: #3A2440;
+  --le-chip-ink: #3A2410;
+  --le-card-border: #EFE3D2;
+  --le-card-shadow: 0 4px 16px rgba(58,36,64,0.12);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -298,3 +311,66 @@ body.modal-open{overflow:hidden;}
 .stat-number{font-family:var(--font-display);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:700;color:var(--white);white-space:nowrap;}
 .stat-label{font-size:clamp(0.65rem,2vw,0.8rem);color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.05em;margin-top:6px;}
 @media(max-width:600px){.stats-grid{gap:28px;}}
+
+/* ==================== LOCAL EVENTS — monthly calendar variant (2026-09) ====================
+   Distinct layout for the recurring monthly "Local Events" pages (one per
+   location). Uses the sunset --le-* palette on the hero only; everything below
+   the hero reuses the site's tokens (Playfair headings in --primary, --accent
+   links, --radius-surface / --shadow-card cards) so the page still reads as
+   thebutlerrealty.com. Replaces .page-hero on these pages; nav/footer/JSON-LD
+   are untouched. */
+
+/* Hero band — sunset -> dusk -> warm-plum gradient with a layered ridgeline SVG.
+   Ends on --le-plum (not near-black) so the band keeps its sunset warmth all the
+   way down; the ridge polygons carry the depth. */
+.le-hero{position:relative;overflow:hidden;text-align:center;
+  padding:clamp(100px,13vw,142px) 0 clamp(52px,8vw,80px);
+  background:linear-gradient(180deg,var(--le-sky-top) 0%,var(--le-sky-mid) 30%,var(--le-dusk) 60%,var(--le-plum) 100%);}
+.le-hero__ridge{position:absolute;left:0;right:0;bottom:0;height:56%;pointer-events:none;}
+.le-hero__ridge svg{display:block;width:100%;height:100%;}
+.le-hero__inner{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:0 28px;}
+.le-eyebrow{display:inline-block;background:var(--le-amber);color:var(--le-chip-ink);
+  font-family:var(--font-body);font-weight:700;font-size:0.72rem;line-height:1;
+  text-transform:uppercase;letter-spacing:0.3em;padding:8px 14px 8px 18px;
+  border-radius:var(--radius-control);margin-bottom:20px;}
+.le-hero__inner h1{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.12;letter-spacing:-0.5px;
+  color:var(--le-cream);margin-bottom:14px;
+  text-shadow:0 2px 20px color-mix(in srgb, var(--le-night) 55%, transparent);}
+.le-hero__sub{font-family:var(--font-body);font-weight:500;font-size:1.05rem;
+  letter-spacing:0.02em;color:var(--le-cream);opacity:0.95;}
+
+/* "This Month's Highlights" grid — warm wash, sits directly under the hero */
+.le-highlights{background:var(--le-wash);padding:clamp(44px,6vw,64px) 0 clamp(36px,5vw,52px);}
+.le-highlights__head{text-align:center;margin-bottom:32px;}
+.le-highlights__head h2{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(1.4rem,3vw,1.9rem);color:var(--primary);}
+.le-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;max-width:960px;margin:0 auto;}
+.le-event-card{display:flex;flex-direction:column;background:var(--white);
+  border-radius:var(--radius-surface);box-shadow:var(--le-card-shadow);
+  border:1px solid var(--le-card-border);overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.le-event-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-raised);}
+.le-event-card__tile{position:relative;height:92px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--le-sky-top) 0%,var(--le-sky-mid) 55%,var(--le-dusk) 100%);}
+.le-event-card__icon{width:38px;height:38px;color:var(--le-cream);opacity:0.92;}
+.le-date-chip{position:absolute;left:16px;bottom:-14px;background:var(--le-amber);
+  color:var(--le-chip-ink);font-weight:700;font-size:0.78rem;letter-spacing:0.04em;
+  text-transform:uppercase;padding:6px 12px;border-radius:10px;box-shadow:var(--shadow-card);}
+.le-event-card__body{display:flex;flex-direction:column;flex:1;padding:22px 22px 20px;}
+.le-event-card__name{font-family:var(--font-display);font-weight:700;font-size:1.15rem;
+  color:var(--primary);margin:12px 0 6px;line-height:1.25;}
+.le-event-card__meta{font-size:var(--text-sm);color:var(--gray-700);line-height:1.5;margin-bottom:14px;}
+.le-event-card__link{margin-top:auto;align-self:flex-start;font-weight:600;font-size:var(--text-sm);color:var(--accent);}
+.le-event-card__link:hover{color:var(--primary);}
+.le-event-card__link:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+
+@media(max-width:600px){
+  .le-hero{padding-top:clamp(90px,24vw,112px);}
+  .le-hero__ridge{height:44%;}
+  .le-hero__sub{font-size:0.98rem;}
+  /* Phone: mountains only. preserveAspectRatio="none" stretches the saguaro
+     paths tall/skinny at narrow widths, so drop them and keep the two ridge
+     polygons. Full saguaros still render at tablet/desktop. */
+  .le-hero__ridge svg path{display:none;}
+}
