@@ -18,14 +18,30 @@
   status = 200
 
 [[redirects]]
-  from = "/areas"
-  to = "/areas.html"
+  from = "/neighborhoods"
+  to = "/neighborhoods.html"
   status = 200
 
 [[redirects]]
-  from = "/areas/*"
-  to = "/areas/:splat.html"
+  from = "/neighborhoods/*"
+  to = "/neighborhoods/:splat.html"
   status = 200
+
+# Old "Areas" URLs moved to "Neighborhoods" (2026-10-07) — permanent redirects keep old links and search results working
+[[redirects]]
+  from = "/areas"
+  to = "/neighborhoods"
+  status = 301
+
+[[redirects]]
+  from = "/areas.html"
+  to = "/neighborhoods"
+  status = 301
+
+[[redirects]]
+  from = "/areas/*"
+  to = "/neighborhoods/:splat"
+  status = 301
 
 [[redirects]]
   from = "/resources"
