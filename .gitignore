@@ -12,6 +12,10 @@ content-queue-articles/
 .claude/agents/
 .claude/launch.json
 
-# Local automation scripts/watchers that publish content from this machine --
-# not part of the deployed site itself.
-automation/
+# automation/ (watcher scripts, tests, README) is tracked; /automation/* is 404'd
+# in netlify.toml + _redirects so it is never served. Only state/logs/caches stay ignored.
+automation/__pycache__/
+automation/*.pyc
+automation/*.log
+automation/*.json
+automation/.guidance/
