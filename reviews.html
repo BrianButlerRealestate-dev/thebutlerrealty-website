@@ -150,11 +150,35 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 }
 </script>
 
-<!-- Review Schema — Client Testimonials (Zillow) -->
+<!-- Review Schema — Client Testimonials (Zillow + Google) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 5,
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Gretchen D."
+      },
+      "reviewBody": "We had an incredible experience working with Brian! He was very patient with us, answered all our questions and went above and beyond what we expected!",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "url": "https://www.google.com/"
+      },
+      "itemReviewed": {
+        "@type": "RealEstateAgent",
+        "name": "Brian Butler",
+        "url": "https://thebutlerrealty.com"
+      }
+    },
     {
       "@type": "Review",
       "reviewRating": {
@@ -371,7 +395,13 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 <section class="section section-alt">
   <div class="container">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;">
-      
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <blockquote class="review-text">"We had an incredible experience working with Brian! He was very patient with us, answered all our questions and went above and beyond what we expected!"</blockquote>
+        <div class="review-author">&mdash; Gretchen D.</div>
+        <div style="font-size:0.78rem;color:var(--gray-500);margin-top:4px;">Google review</div>
+      </div>
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <blockquote class="review-text">"Brian was amazing to work with. He was understanding of the home dynamic we needed to fit our unique situation and allowed us to continue looking until we found the right home for us - Never rushing us to settle for less than what we needed!"</blockquote>
