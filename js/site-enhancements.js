@@ -140,6 +140,34 @@
     });
   }
 
+  /* ==================== LEAD ATTRIBUTION (page + UTM hidden fields) ====================
+     Fills the hidden page / utm_* inputs on any form just before it is submitted. Runs in the
+     capture phase so it fires before each form's own submit handler builds its FormData.
+     UTMs are remembered for the session so a lead who browses a few pages still gets credited. */
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'];
+  function currentUtms() {
+    var out = {}, stored = {};
+    try { stored = JSON.parse(sessionStorage.getItem('tbrUtm') || '{}'); } catch (e) { /* ignore */ }
+    var params = new URLSearchParams(window.location.search), fresh = false;
+    UTM_KEYS.forEach(function (k) {
+      var v = params.get(k);
+      if (v) { stored[k] = v; fresh = true; }
+      out[k] = stored[k] || '';
+    });
+    if (fresh) { try { sessionStorage.setItem('tbrUtm', JSON.stringify(stored)); } catch (e) { /* ignore */ } }
+    return out;
+  }
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || !form.querySelector || !form.querySelector('input[name="page"]')) return;
+    var utms = currentUtms();
+    form.querySelector('input[name="page"]').value = window.location.pathname;
+    UTM_KEYS.forEach(function (k) {
+      var el = form.querySelector('input[name="' + k + '"]');
+      if (el) el.value = utms[k];
+    });
+  }, true);
+
   /* ==================== EXIT-INTENT / SCROLL-DEPTH LEAD POPUP ==================== */
   var POPUP_SESSION_KEY = 'tbrLeadPopupShown';
 
@@ -173,9 +201,14 @@
     '      <p>Median prices, days on market, and inventory trends for Gilbert, Mesa, Chandler, San Tan Valley, Queen Creek &amp; Florence — updated regularly.</p>' +
     '      <form name="lead-popup" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="leadPopupFormEl">' +
     '        <input type="hidden" name="form-name" value="lead-popup">' +
+    '        <input type="hidden" name="page" value="">' +
+    '        <input type="hidden" name="utm_source" value="">' +
+    '        <input type="hidden" name="utm_medium" value="">' +
+    '        <input type="hidden" name="utm_campaign" value="">' +
     '        <p class="hidden"><label>Don\'t fill this out: <input name="bot-field"></label></p>' +
     '        <div class="form-group"><label>Name</label><input type="text" name="name" required></div>' +
     '        <div class="form-group"><label>Email</label><input type="email" name="email" required></div>' +
+    '        <div class="form-group"><label>What are you looking for?</label><select name="looking-for" required><option value="">Select one…</option><option value="Buying">Buying</option><option value="Selling">Selling</option><option value="Both">Both</option><option value="Just looking">Just looking</option></select></div>' +
     '        <button type="submit" class="btn btn-accent submit-btn">Send Me the Report &rarr;</button>' +
     '      </form>' +
     '    </div>' +
@@ -273,6 +306,10 @@
     '      <form name="resource-download" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="resourceModalFormEl">' +
     '        <input type="hidden" name="form-name" value="resource-download">' +
     '        <input type="hidden" name="resource" id="resourceModalField" value="">' +
+    '        <input type="hidden" name="page" value="">' +
+    '        <input type="hidden" name="utm_source" value="">' +
+    '        <input type="hidden" name="utm_medium" value="">' +
+    '        <input type="hidden" name="utm_campaign" value="">' +
     '        <p class="hidden"><label>Don\'t fill this out: <input name="bot-field"></label></p>' +
     '        <div class="form-group"><label>Name</label><input type="text" name="name" required></div>' +
     '        <div class="form-group"><label>Email</label><input type="email" name="email" required></div>' +

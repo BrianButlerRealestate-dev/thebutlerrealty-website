@@ -442,15 +442,24 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
      same form name. Do not remove: without this, the JS-injected popup fails to submit. -->
 <form name="lead-popup" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden">
   <input type="hidden" name="form-name" value="lead-popup">
+  <input type="hidden" name="page" value="">
+  <input type="hidden" name="utm_source" value="">
+  <input type="hidden" name="utm_medium" value="">
+  <input type="hidden" name="utm_campaign" value="">
   <input name="bot-field">
   <input type="text" name="name">
   <input type="email" name="email">
+  <select name="looking-for"><option>Buying</option><option>Selling</option><option>Both</option><option>Just looking</option></select>
 </form>
 <!-- Hidden static copy so Netlify registers "resource-download" — the real modal
      (used by resources.html and buyers.html) is injected by js/site-enhancements.js. -->
 <form name="resource-download" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden">
   <input type="hidden" name="form-name" value="resource-download">
   <input type="hidden" name="resource" value="">
+  <input type="hidden" name="page" value="">
+  <input type="hidden" name="utm_source" value="">
+  <input type="hidden" name="utm_medium" value="">
+  <input type="hidden" name="utm_campaign" value="">
   <input name="bot-field">
   <input type="text" name="name">
   <input type="email" name="email">
