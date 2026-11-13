@@ -334,6 +334,62 @@ def publish_one(path):
     }
 
 
+REPORT_PDF_REL = "downloads/san_tan_valley_florence_market_report.pdf"
+
+
+def _is_market_update(path):
+    try:
+        head = path.read_text(encoding="utf-8")[:300]
+    except OSError:
+        return False
+    return bool(re.search(r"^CONTENT TYPE:\s*Market Update\s*$", head, re.M))
+
+
+def refresh_market_report(path):
+    """After a Market Update page publishes, rebuild the downloadable market
+    report PDF from that same hand-off, commit it, and push (added 2026-11-13).
+
+    The PDF is what the lead popup and /resources hand out, so it must never lag
+    the monthly page. Failure here never blocks or undoes the page publish -- it
+    returns a `flagged` entry so the toast tells Brian the PDF needs attention.
+    Only commits/pushes from `master`, the branch this automation's own
+    website-publisher pushes from; on any other branch it builds the file and
+    leaves committing to Brian rather than push unrelated work to main."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import build_market_report_pdf as report
+        pdf, month = report.build(path)
+    except Exception as e:  # ReportError or anything unexpected
+        log(f"! market report PDF build failed for {path.name}: {e}")
+        return {"status": "flagged", "needs_input": True,
+                "summary": f"Market page published, but the downloadable PDF was NOT rebuilt: {e}"}
+    log(f"   built market report PDF for {month}: {pdf}")
+
+    branch = _git("rev-parse", "--abbrev-ref", "HEAD")
+    branch = branch.stdout.strip() if branch is not None and branch.returncode == 0 else ""
+    if branch != "master":
+        log(f"! market report PDF built but repo is on '{branch}', not master -- not committing")
+        return {"status": "flagged", "needs_input": True,
+                "summary": f"{month} market report PDF built but NOT published: repo is on branch "
+                           f"'{branch}'. Commit {REPORT_PDF_REL} and push to main."}
+
+    _git("add", REPORT_PDF_REL)
+    changed = _git("diff", "--cached", "--quiet", "--", REPORT_PDF_REL)
+    if changed is not None and changed.returncode == 0:
+        return {"status": "success", "needs_input": False, "url": None,
+                "summary": f"{month} market report PDF already up to date"}
+    commit = _git("commit", "-m", f"Update downloadable market report PDF: {month}", "--", REPORT_PDF_REL)
+    push = _git("push", "origin", "master:main")
+    if commit is None or commit.returncode != 0 or push is None or push.returncode != 0:
+        err = (push.stderr if push is not None and push.returncode != 0 else
+               commit.stderr if commit is not None else "")[-200:]
+        log(f"! market report PDF commit/push failed: {err}")
+        return {"status": "flagged", "needs_input": True,
+                "summary": f"{month} market report PDF built but commit/push failed: {err}"}
+    return {"status": "success", "needs_input": False, "url": None,
+            "summary": f"{month} market report PDF rebuilt and published"}
+
+
 def notify_summary(results):
     try:
         from win11toast import notify
@@ -357,7 +413,8 @@ def notify_summary(results):
         elif entry.get("needs_input"):
             lines.append(f"\u26a0 PUBLISHED, NEEDS YOUR ANSWER -- {filename}: {entry.get('reason', '')[:200]}")
         else:
-            lines.append(f"{filename}: published -> {entry['url']}")
+            lines.append(f"{filename}: published -> {entry['url']}" if entry.get("url")
+                         else f"{filename}: {entry.get('summary', 'done')}")
 
     title = "\u26a0 Butler Website Publisher -- Needs Review" if needs_attention else "Butler Website Publisher"
     body = "\n".join(lines)[:750]
@@ -411,6 +468,10 @@ def main():
         state["processed"][path.name] = entry
         save_state(state)  # persist after every file so a crash mid-batch can't cause a re-publish
         results.append((path.name, entry))
+        if entry["status"] == "success" and _is_market_update(path):
+            pdf_entry = refresh_market_report(path)
+            pdf_entry["processed_at"] = datetime.now(timezone.utc).isoformat()
+            results.append((f"{path.name} (market report PDF)", pdf_entry))
 
     unpushed = count_unpushed_commits()
     if unpushed:

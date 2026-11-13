@@ -197,8 +197,8 @@
     '    <button type="button" class="modal-close" id="leadPopupClose" aria-label="Close">&times;</button>' +
     '    <div id="leadPopupForm">' +
     '      <div class="section-label">Before You Go</div>' +
-    '      <h3>Get the Free East Valley Market Report</h3>' +
-    '      <p>Median prices, days on market, and inventory trends for Gilbert, Mesa, Chandler, San Tan Valley, Queen Creek &amp; Florence — updated regularly.</p>' +
+    '      <h3>See What San Tan Valley &amp; Florence Homes Are Really Selling For</h3>' +
+    '      <p>Get the free market report: sales, new and active listings, days on market, and months of supply, refreshed every month.</p>' +
     '      <form name="lead-popup" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="leadPopupFormEl">' +
     '        <input type="hidden" name="form-name" value="lead-popup">' +
     '        <input type="hidden" name="page" value="">' +
@@ -216,7 +216,7 @@
     '      <div class="modal-icon">🎉</div>' +
     '      <h3>You\'re In!</h3>' +
     '      <p>Your download should start automatically. Questions in the meantime? <a href="/contact">Reach out anytime</a>.</p>' +
-    '      <a href="/downloads/east_valley_market_report.pdf" id="leadPopupDownloadLink" class="btn btn-accent" target="_blank" rel="noopener">Download Now &rarr;</a>' +
+    '      <a href="/downloads/san_tan_valley_florence_market_report.pdf" id="leadPopupDownloadLink" class="btn btn-accent" target="_blank" rel="noopener">Download Now &rarr;</a>' +
     '    </div>' +
     '  </div>' +
     '</div>';

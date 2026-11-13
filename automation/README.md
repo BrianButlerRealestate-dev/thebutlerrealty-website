@@ -98,6 +98,25 @@ CATEGORY / PUBLISH DATE / PROPOSED SLUG
 and a closing `**Sources:**` line, optional FROM BRIAN CLOSING. The full
 procedure that produces them is `butler-template-engine/local-events/RUNBOOK.md`.
 
+### Monthly market report PDF (added 2026-11-13)
+
+The free report the lead popup and `/resources` hand out is
+`downloads/san_tan_valley_florence_market_report.pdf` (same filename every
+month, so links never break). It is **generated, never hand-edited**:
+`automation/build_market_report_pdf.py` reads the newest
+`CONTENT TYPE: Market Update` hand-off (metrics table, recap, Brian's Take,
+restatement note) and prints a 2-page PDF through headless Microsoft Edge (no
+pip packages). After this watcher publishes a Market Update page successfully,
+`refresh_market_report()` rebuilds the PDF from that same file, commits only
+the PDF, and pushes `master:main`, then adds a second line to the toast. A
+failure there never undoes the page publish; it shows up as "needs review".
+It only commits from `master` (otherwise it builds the file and flags it).
+The build refuses to run on an incomplete hand-off or if the retired
+"The Butler Realty" wordmark / franchise language / a placeholder appears.
+
+Manual rebuild any time: `python automation/build_market_report_pdf.py`
+(add a hand-off path to build from a specific month).
+
 ## Task Scheduler registration (one-time)
 
 Run this once, in a terminal or a Desktop Claude Code session (it's plain
