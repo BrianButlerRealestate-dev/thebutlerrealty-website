@@ -263,21 +263,13 @@ def check_html(doc):
         raise ReportError("Unfilled placeholder found in the report -- refusing to build")
 
 
-def build(handoff=None, output=OUTPUT_PDF):
-    """Build the PDF from `handoff` (default: newest market update). Returns
-    (output_path, month_year). Raises ReportError on any problem, leaving the
-    existing PDF untouched."""
-    handoff = Path(handoff) if handoff else newest_market_update()
-    fields = parse_handoff(handoff)
-    if fields.get("CONTENT TYPE", "").lower() != "market update":
-        raise ReportError(f"{handoff.name} is not a Market Update hand-off")
-    doc = render_html(fields)
+def html_to_pdf(doc, output):
+    """Print an HTML string to `output` through headless Edge/Chrome. The
+    existing file is replaced only after a good PDF is produced."""
     check_html(doc)
-
     browser = find_browser()
     if not browser:
         raise ReportError("Neither Microsoft Edge nor Chrome was found to print the PDF")
-
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         page, out, profile = tmp / "report.html", tmp / "report.pdf", tmp / "profile"
@@ -302,7 +294,19 @@ def build(handoff=None, output=OUTPUT_PDF):
         output = Path(output)
         output.parent.mkdir(exist_ok=True)
         shutil.copyfile(out, output)  # replace only after a good build
-    return output, fields["MONTH/YEAR"]
+    return output
+
+
+def build(handoff=None, output=OUTPUT_PDF):
+    """Build the PDF from `handoff` (default: newest market update). Returns
+    (output_path, month_year). Raises ReportError on any problem, leaving the
+    existing PDF untouched."""
+    handoff = Path(handoff) if handoff else newest_market_update()
+    fields = parse_handoff(handoff)
+    if fields.get("CONTENT TYPE", "").lower() != "market update":
+        raise ReportError(f"{handoff.name} is not a Market Update hand-off")
+    doc = render_html(fields)
+    return html_to_pdf(doc, output), fields["MONTH/YEAR"]
 
 
 if __name__ == "__main__":

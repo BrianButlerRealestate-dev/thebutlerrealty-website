@@ -117,6 +117,16 @@ The build refuses to run on an incomplete hand-off or if the retired
 Manual rebuild any time: `python automation/build_market_report_pdf.py`
 (add a hand-off path to build from a specific month).
 
+### Evergreen guide PDFs (added 2026-11-13)
+
+`automation/build_guide_pdfs.py` rebuilds the other four downloads
+(`first_time_buyer_guide`, `home_seller_checklist`, `home_maintenance_calendar`,
+`neighborhood_spotlights`). Not monthly: run it by hand
+(`python automation/build_guide_pdfs.py`, or add `buyer|seller|maintenance|neighborhoods`)
+after editing their text in that file or after adding/changing a page under
+`neighborhoods/`, because the neighborhood guide is generated from those pages.
+They carry no dollar figures and no named assistance programs by design.
+
 ## Task Scheduler registration (one-time)
 
 Run this once, in a terminal or a Desktop Claude Code session (it's plain
