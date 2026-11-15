@@ -25,7 +25,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202608131900">
+<link rel="stylesheet" href="styles.css?v=202611151900">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2FZ7XDDN5"></script>
@@ -170,16 +170,25 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
       <li><a href="search.html">Search Homes</a></li>
       <li><a href="buyers.html">Buyers</a></li>
       <li><a href="sellers.html">Sellers</a></li>
       <li><a href="neighborhoods.html">Neighborhoods</a></li>
-      <li><a href="community-news.html">News</a></li>
-      <li><a href="market-updates.html">Market Data</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
-      <li><a href="about.html">About</a></li>
+      <li class="has-sub"><a href="market-updates.html">Insights</a>
+        <ul class="sub">
+          <li><a href="market-updates.html">Market Data</a></li>
+          <li><a href="mortgage-rates.html">Mortgage Rates</a></li>
+          <li><a href="buyers.html#calculator">Mortgage Calculator</a></li>
+          <li><a href="community-news.html">Community News</a></li>
+          <li><a href="resources.html">Free Resources</a></li>
+        </ul>
+      </li>
+      <li class="has-sub"><a href="about.html">About</a>
+        <ul class="sub">
+          <li><a href="about.html">About Brian</a></li>
+          <li><a href="reviews.html">Client Reviews</a></li>
+        </ul>
+      </li>
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
   </div>
@@ -264,12 +273,45 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Where I Work</div>
+      <h2 class="section-title">The East Valley, With Two Specialties</h2>
+      <p class="section-subtitle">I serve Gilbert, Mesa, Chandler, San Tan Valley, Queen Creek, Apache Junction and Florence. San Tan Valley and Florence are where I go deepest.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h3>San Tan Valley</h3>
+        <p>Master-planned communities, ranchette pockets, and a brand-new town. Read the plain-English guide to every neighborhood before you tour.</p>
+        <p><a href="neighborhoods/san-tan-valley.html" style="color:var(--accent);font-weight:500;">San Tan Valley neighborhoods &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Florence</h3>
+        <p>Historic downtown, Anthem at Merrill Ranch, new construction, and a real land market. Three markets sharing one name.</p>
+        <p><a href="neighborhoods/florence.html" style="color:var(--accent);font-weight:500;">Florence neighborhoods &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Relocating to Arizona?</h3>
+        <p>Many of my clients are moving from out of town. Start with the questions worth settling before you ever tour a home.</p>
+        <p><a href="moving-to-san-tan-valley.html" style="color:var(--accent);font-weight:500;">Read the moving guide &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">The Details</h2>
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">The Fastest Way to Reach Me</h2>
     </div>
     <div style="max-width:600px;margin:0 auto;text-align:center;">
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;">
+        <a href="tel:4808109255" class="btn btn-primary">Call 480-810-9255</a>
+        <a href="sms:+14808109255" class="btn btn-accent">Text Me</a>
+        <a href="https://calendly.com/azbestrealtybrian/book-a-15-min-call-below" target="_blank" rel="noopener" onclick="if(window.Calendly){Calendly.initPopupWidget({url:'https://calendly.com/azbestrealtybrian/book-a-15-min-call-below'});return false;}" class="btn btn-accent">Book a Free 15-Min Call</a>
+      </div>
       <p style="font-size:0.95rem;color:var(--gray-700);line-height:1.8;">
         <strong>Brian Butler</strong><br>
         REALTOR® | eXp Realty<br>
@@ -289,6 +331,8 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
     <a href="contact.html" class="btn">Let's Talk &rarr;</a>
   </div>
 </div>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </main>
 
 <footer class="footer">
@@ -332,6 +376,6 @@ window.addEventListener('scroll',()=>{document.getElementById('nav').classList.t
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===location.pathname.split('/').pop())a.classList.add('active');});
 </script>
 
-<script src="/js/site-enhancements.js?v=202608131900" defer></script>
+<script src="/js/site-enhancements.js?v=202611151900" defer></script>
 </body>
 </html>

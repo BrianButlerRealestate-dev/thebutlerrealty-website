@@ -25,7 +25,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202608131900">
+<link rel="stylesheet" href="styles.css?v=202611151900">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2FZ7XDDN5"></script>
@@ -251,16 +251,25 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
       <li><a href="search.html">Search Homes</a></li>
       <li><a href="buyers.html">Buyers</a></li>
       <li><a href="sellers.html">Sellers</a></li>
       <li><a href="neighborhoods.html">Neighborhoods</a></li>
-      <li><a href="community-news.html">News</a></li>
-      <li><a href="market-updates.html">Market Data</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
-      <li><a href="about.html">About</a></li>
+      <li class="has-sub"><a href="market-updates.html">Insights</a>
+        <ul class="sub">
+          <li><a href="market-updates.html">Market Data</a></li>
+          <li><a href="mortgage-rates.html">Mortgage Rates</a></li>
+          <li><a href="buyers.html#calculator">Mortgage Calculator</a></li>
+          <li><a href="community-news.html">Community News</a></li>
+          <li><a href="resources.html">Free Resources</a></li>
+        </ul>
+      </li>
+      <li class="has-sub"><a href="about.html">About</a>
+        <ul class="sub">
+          <li><a href="about.html">About Brian</a></li>
+          <li><a href="reviews.html">Client Reviews</a></li>
+        </ul>
+      </li>
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
   </div>
@@ -296,6 +305,23 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 
 <section class="section">
   <div class="container">
+    <div class="section-header">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">The Selling Process in 6 Steps</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card text-center"><div class="card-icon" style="margin:0 auto 12px;background:var(--accent);color:white;font-weight:700;font-size:1.2rem;">1</div><h3>Price It Right</h3><p>We start with a free home value report and an honest look at your competition, including new construction nearby. Pricing is based on numbers, not adjectives.</p></div>
+      <div class="card text-center"><div class="card-icon" style="margin:0 auto 12px;background:var(--accent);color:white;font-weight:700;font-size:1.2rem;">2</div><h3>Prep the Home</h3><p>Room-by-room, week-by-week prep using the seller checklist, so you spend effort where it pays off.</p></div>
+      <div class="card text-center"><div class="card-icon" style="margin:0 auto 12px;background:var(--accent);color:white;font-weight:700;font-size:1.2rem;">3</div><h3>Launch the Listing</h3><p>Professional photography and video tour, MLS listing with syndication to Zillow, Realtor.com, Redfin and more, plus targeted social media.</p></div>
+      <div class="card text-center"><div class="card-icon" style="margin:0 auto 12px;background:var(--accent);color:white;font-weight:700;font-size:1.2rem;">4</div><h3>Showings &amp; Feedback</h3><p>Strategic open houses and direct outreach to agents with active buyers. You get weekly updates with showing feedback and market data.</p></div>
+      <div class="card text-center"><div class="card-icon" style="margin:0 auto 12px;background:var(--accent);color:white;font-weight:700;font-size:1.2rem;">5</div><h3>Negotiate &amp; Go Under Contract</h3><p>I negotiate to maximize your net proceeds, then manage inspections, appraisal and paperwork through to closing.</p></div>
+      <div class="card text-center"><div class="card-icon" style="margin:0 auto 12px;background:var(--green);color:white;font-weight:700;font-size:1.2rem;">6</div><h3>Close &amp; Hand Over the Keys</h3><p>Sign, get paid, and hand over the keys with no loose ends.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
     <div class="card-grid">
       <div class="download-card">
         <h3>📋 Home Seller Checklist</h3>
@@ -311,7 +337,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
   </div>
 </section>
 
-<section class="section section-alt">
+<section class="section">
   <div class="container">
     <div class="section-header">
       <div class="section-label">Instant Estimate</div>
@@ -379,6 +405,6 @@ window.addEventListener('scroll',()=>{document.getElementById('nav').classList.t
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===location.pathname.split('/').pop())a.classList.add('active');});
 </script>
 
-<script src="/js/site-enhancements.js?v=202608131900" defer></script>
+<script src="/js/site-enhancements.js?v=202611151900" defer></script>
 </body>
 </html>

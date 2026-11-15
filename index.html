@@ -25,7 +25,7 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202608131900">
+<link rel="stylesheet" href="styles.css?v=202611151900">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2FZ7XDDN5"></script>
@@ -208,16 +208,25 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
       <li><a href="search.html">Search Homes</a></li>
       <li><a href="buyers.html">Buyers</a></li>
       <li><a href="sellers.html">Sellers</a></li>
       <li><a href="neighborhoods.html">Neighborhoods</a></li>
-      <li><a href="community-news.html">News</a></li>
-      <li><a href="market-updates.html">Market Data</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
-      <li><a href="about.html">About</a></li>
+      <li class="has-sub"><a href="market-updates.html">Insights</a>
+        <ul class="sub">
+          <li><a href="market-updates.html">Market Data</a></li>
+          <li><a href="mortgage-rates.html">Mortgage Rates</a></li>
+          <li><a href="buyers.html#calculator">Mortgage Calculator</a></li>
+          <li><a href="community-news.html">Community News</a></li>
+          <li><a href="resources.html">Free Resources</a></li>
+        </ul>
+      </li>
+      <li class="has-sub"><a href="about.html">About</a>
+        <ul class="sub">
+          <li><a href="about.html">About Brian</a></li>
+          <li><a href="reviews.html">Client Reviews</a></li>
+        </ul>
+      </li>
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
   </div>
@@ -422,6 +431,32 @@ src="https://www.facebook.com/tr?id=613631230446097&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Free Tools</div>
+      <h2 class="section-title">Run the Numbers Before You Call</h2>
+    </div>
+    <div class="card-grid">
+      <div class="download-card">
+        <h3>🧮 Mortgage Payment Calculator</h3>
+        <p>See an estimated monthly payment with taxes, insurance and HOA included. Adjust the sliders to fit your budget.</p>
+        <a href="buyers.html#calculator" class="btn btn-accent">Try the Calculator &rarr;</a>
+      </div>
+      <div class="download-card">
+        <h3>🧭 Moving to the Area?</h3>
+        <p>The commute, schools, water and new-construction questions to settle before you buy in San Tan Valley or Florence.</p>
+        <a href="moving-to-san-tan-valley.html" class="btn btn-accent">Read the Moving Guide &rarr;</a>
+      </div>
+      <div class="download-card">
+        <h3>📈 This Month's Market Data</h3>
+        <p>Sold listings, new listings, and months of supply for San Tan Valley and Florence, updated monthly.</p>
+        <a href="market-updates.html" class="btn btn-accent">See the Numbers &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-dark">
   <div class="container" style="text-align:center;">
     <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:12px;">Curious What Your Home Is Worth?</h2>
@@ -599,7 +634,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')=
 })();
 </script>
 
-<script src="/js/site-enhancements.js?v=202608131900" defer></script>
+<script src="/js/site-enhancements.js?v=202611151900" defer></script>
 
 </body>
 </html>

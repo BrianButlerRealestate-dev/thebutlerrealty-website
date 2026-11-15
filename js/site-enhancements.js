@@ -367,7 +367,25 @@
     });
   }
 
+  /* ==================== STICKY CALL / TEXT BAR (phones; CSS hides it on wider screens) ==================== */
+  function initMobileCtaBar() {
+    if (document.querySelector('.mobile-cta-bar') || document.body.getAttribute('data-page') === 'error') return;
+    var bar = document.createElement('div');
+    bar.className = 'mobile-cta-bar';
+    bar.innerHTML =
+      '<a class="primary" href="tel:4808109255" data-cta="call">Call Brian</a>' +
+      '<a href="sms:+14808109255" data-cta="text">Text Brian</a>';
+    bar.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a[data-cta]') : null;
+      if (a && typeof window.gtag === 'function') {
+        window.gtag('event', 'click_' + a.getAttribute('data-cta'), { event_category: 'mobile_cta_bar', page: window.location.pathname });
+      }
+    });
+    document.body.appendChild(bar);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    initMobileCtaBar();
     initReveal();
     initPopup();
     initDownloadModal();

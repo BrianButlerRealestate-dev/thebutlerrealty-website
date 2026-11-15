@@ -374,3 +374,27 @@ body.modal-open{overflow:hidden;}
      polygons. Full saguaros still render at tablet/desktop. */
   .le-hero__ridge svg path{display:none;}
 }
+
+/* NAV DROPDOWNS (Insights, About) — added 2026-11-15 */
+.nav-links .has-sub{position:relative;}
+.nav-links .has-sub>a{display:inline-block;padding:22px 0;}
+.nav-links .has-sub>a::after{content:"\25BE";margin-left:4px;font-size:0.7em;opacity:0.7;}
+.nav-links .sub{display:none;position:absolute;top:100%;left:-14px;min-width:210px;list-style:none;margin:0;padding:8px 0;background:var(--primary);border:1px solid rgba(255,255,255,0.12);border-top:2px solid var(--accent);border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(0,0,0,0.18);}
+.nav-links .has-sub:hover>.sub,.nav-links .has-sub:focus-within>.sub{display:block;}
+.nav-links .sub a{display:block;padding:9px 18px;white-space:nowrap;}
+@media(max-width:1200px){
+  .nav-links .has-sub>a{padding:0;}
+  .nav-links .sub{display:block;position:static;min-width:0;padding:8px 0 0 14px;background:none;border:0;box-shadow:none;}
+  .nav-links .sub li{margin-top:10px;}
+  .nav-links .sub a{padding:0;font-size:0.82rem;opacity:0.9;}
+}
+
+/* STICKY CALL/TEXT BAR (phones only) — added 2026-11-15 */
+.mobile-cta-bar{display:none;}
+@media(max-width:768px){
+  .mobile-cta-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:900;gap:10px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--primary);border-top:2px solid var(--accent);}
+  .mobile-cta-bar a{flex:1;text-align:center;padding:12px 8px;border-radius:8px;font-weight:700;font-size:0.95rem;color:var(--white);text-decoration:none;background:rgba(255,255,255,0.14);}
+  .mobile-cta-bar a.primary{background:var(--accent);}
+  body{padding-bottom:70px;}
+  body.modal-open .mobile-cta-bar{display:none;}
+}
