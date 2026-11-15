@@ -55,6 +55,11 @@
   status = 200
 
 [[redirects]]
+  from = "/moving-to-san-tan-valley"
+  to = "/moving-to-san-tan-valley.html"
+  status = 200
+
+[[redirects]]
   from = "/mortgage-rates"
   to = "/mortgage-rates.html"
   status = 200

@@ -8,6 +8,7 @@
 /areas.html  /neighborhoods    301
 /areas/*     /neighborhoods/:splat 301
 /resources /resources.html 200
+/moving-to-san-tan-valley /moving-to-san-tan-valley.html 200
 /mortgage-rates /mortgage-rates.html 200
 /reviews  /reviews.html  200
 /contact  /contact.html  200
